@@ -1,0 +1,20 @@
+.navigator {
+  background-color: $main-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $s-size;
+}
+
+.navigator--a {
+  border: 2px solid $white;
+  background-color: #6485AB;
+  border-radius: 50%;
+  color: $white;
+  display: block;
+  height: 4rem;
+  text-align: center;
+  text-decoration: none;
+  line-height: 4rem;
+  width: 4rem;
+}

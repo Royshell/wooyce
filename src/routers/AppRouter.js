@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React from 'react';
-import PersonalInfoPage from '../components/PersonalInfoPage';
-import IncomePage from '../components/IncomePage';
+
 import AssetsPage from '../components/AssetsPage';
 import DebtsPage from '../components/DebtsPage';
+import IncomePage from '../components/IncomePage';
 import Nav from '../components/Nav';
 import NotFoundPage from '../components/NotFoundPage';
+import PageNavigator from '../components/PageNavigator';
+import PersonalInfoPage from '../components/PersonalInfoPage';
 
-PersonalInfoPage 
 const AppRouter = () => (
   <BrowserRouter>
-    <div>
+    <div className="container">
       <Nav />
       <Switch>
         <Route path="/" component={PersonalInfoPage} exact={true}/>

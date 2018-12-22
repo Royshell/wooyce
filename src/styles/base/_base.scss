@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: lavenderblush;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4rem;
+}
+
+button {
+  background-color: $light-blue;
+  border: none;
+  border-radius: 0.6rem;
+  color: $white;
+  cursor: pointer;
+  height: 4rem;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+a.is-active {
+  background-color: white;
+  color: $main-blue;
+}
+
+hr {
+  border-style: solid;
+  color: $light-blue;
+  width: 100%;
+}
+
+input[type="text"] {
+  width: 10rem;
+}

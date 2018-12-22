@@ -1,0 +1,42 @@
+.widget {
+  background-color: opacify($color: $white, $amount: 0.85);
+  border-bottom-right-radius: $m-size;
+  border-top-right-radius: $m-size;
+  display: flex;
+  flex-direction: column;
+  padding: $s-size $l-size;
+  width: 100%;
+}
+
+//BEM 
+.widget__title {
+  font-size: $l-size;
+  color: $light-blue;
+  margin: 0;
+}
+
+.widget__subtitle {
+  font-weight: normal;
+}
+
+.widget--label {
+  display: inline-block;
+  margin: 0 $s-size $s-size 0;
+  padding-top: $s-size;
+}
+
+.widget__main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget__currency {
+  color: $light-blue;
+  margin-right: $s-size;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .header {
+    margin-bottom: $xl-size;
+  }
+}

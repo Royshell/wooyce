@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css';
 import AppRouter from './routers/AppRouter';
+import configureStore from './store/configureStore';
+import './styles/style.scss';
 
-console.log('bahh bahh');
+const store = configureStore();
 
 const jsx = (
-  <AppRouter />
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
 );
+
 ReactDOM.render(jsx, document.getElementById('app'));
