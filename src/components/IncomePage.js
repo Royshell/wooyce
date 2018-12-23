@@ -28,7 +28,7 @@ class IncomePage extends React.Component {
         <div className="widget__main">
           <div>
             <label className="widget--label">What is your annual pre-tax income? </label>
-            <span className="widget__currency">$</span><input type="text" onChange={this.onIncomeChange} value={this.state.income} />
+            <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} onChange={this.onIncomeChange} value={this.state.income} />
           </div>
           <div>
             <label>What is your credit score</label>
