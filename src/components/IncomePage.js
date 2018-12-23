@@ -1,4 +1,5 @@
 import React from 'react';
+import Cleave from 'cleave.js/react';
 import { connect } from 'react-redux';
 import { addIcomeData } from '../actions/actions';
 import PageNavigator from './PageNavigator';
