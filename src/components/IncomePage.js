@@ -33,11 +33,13 @@ class IncomePage extends React.Component {
           <div>
             <label>What is your credit score</label>
             <select onChange={this.onCreaditChange}>
+              <option value="0"></option>
               <option value="1">0-599</option>
               <option value="2">600-699</option>
               <option value="3">700-749</option>
               <option value="4">750-850</option>
             </select>
+            <div className="widget__disclaimer">(Leave blank if you don't know your credit score)</div>
           </div>  
         </div>
         <PageNavigator prevLink="/" onNextClick={this.addIncome}/>

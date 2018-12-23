@@ -1,4 +1,5 @@
 import React from 'react';
+import Cleave from 'cleave.js/react';
 import { connect } from 'react-redux';
 import { addAssetsData } from '../actions/actions';
 import PageNavigator from './PageNavigator';
@@ -32,7 +33,6 @@ class AssetsPage extends React.Component {
     this.setState(() => ({ assetsMoney }));
   };
   addAssetsData = (e) => {
-    console.log(this.state);
     this.props.dispatchThenRoute(this.state);
   };
   render() {
@@ -41,37 +41,47 @@ class AssetsPage extends React.Component {
         <h2 className="widget__title">ASSETS</h2>
         <hr />
         <div className="widget__main">
-          <div>
+          <div className="widget__main__column">
             <label>How much money do you have in bank, and retirement accounts?</label>
-            <span className="widget__currency">$</span><input type="text" value={this.state.assetsMoney} onChange={this.onAssetsMoneyChange}/>
+            <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} type="text" value={this.state.assetsMoney} onChange={this.onAssetsMoneyChange}/>
           </div>
           <div>
-            <div>
-              <input type="checkbox" value={this.state.homeOwn} onChange={this.onHomeOwnChange} />
-              <label>Do You own a home?</label>
+            <div className="widget__inner-section">
+              <div>
+                <input type="checkbox" value={this.state.homeOwn} onChange={this.onHomeOwnChange} />
+                <label>Do You own a home?</label>
+              </div>     
+              <div className="widget__flex-wrapper">
+                <label className={!this.state.homeOwn ? 'disabled': undefined}>What is the total value of your home?</label>
+                <span>
+                  <span className="widget__currency">$</span>
+                  <Cleave 
+                    options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}}
+                    disabled={!!!this.state.homeOwn} 
+                    type="text" value={this.state.homeValue} 
+                    onChange={this.onHomeValueChange}
+                  />
+                </span>
+              </div>
             </div>
-            <div>
-              <label>What is the total value of your home?</label>
-              <input 
-                disabled={!this.state.homeOwn} 
-                type="text" value={this.state.homeValue} 
-                onChange={this.onHomeValueChange}
-              />
+            <div className="widget__inner-section">
+              <div>
+                <input type="checkbox" value={this.state.carOwn} onChange={this.onCarOwnChange} />
+                <label>Do You own a car?</label>
+              </div>   
+              <div className="widget__flex-wrapper">
+                <label className={!this.state.carOwn ? 'disabled': undefined}>What is the total value of your car?</label>
+                <span>
+                  <span className="widget__currency">$</span>
+                  <Cleave 
+                    options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}}
+                    disabled={!this.state.carOwn} 
+                    type="text" value={this.state.carValue} 
+                    onChange={this.onCarValueChange}
+                  />
+                </span>
+              </div>
             </div>
-            <div>
-            <div>
-              <input type="checkbox" value={this.state.carOwn} onChange={this.onCarOwnChange} />
-              <label>Do You own a car?</label>
-            </div>
-            <div>
-              <label>What is the total value of your car?</label>
-              <input 
-                disabled={!this.state.carOwn} 
-                type="text" value={this.state.carValue} 
-                onChange={this.onCarValueChange}
-              />
-            </div>
-          </div>
           </div>
         </div>
         <PageNavigator prevLink="/income" onNextClick={this.addAssetsData} />

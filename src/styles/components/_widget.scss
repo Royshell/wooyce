@@ -8,7 +8,6 @@
   width: 100%;
 }
 
-//BEM 
 .widget__title {
   font-size: $l-size;
   color: $light-blue;
@@ -21,18 +20,41 @@
 
 .widget--label {
   display: inline-block;
+  line-height: 1.1rem;
   margin: 0 $s-size $s-size 0;
   padding-top: $s-size;
 }
 
 .widget__main {
   display: flex;
-  justify-content: space-between;
+}
+
+.widget__main__column {
+  display: flex;
+  margin-right: 5%;
+  width: 45%;
+}
+
+.widget__main > div {
+  width: 50%;
 }
 
 .widget__currency {
   color: $light-blue;
-  margin-right: $s-size;
+  margin-right: $xs-size;
+}
+.widget__disclaimer {
+  font-size: $m-size ;
+  font-style: italic;
+}
+
+.widget__inner-section {
+  margin: 0 0 $m-size $m-size;
+}
+
+.widget__flex-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (min-width: $desktop-breakpoint) {

@@ -2,19 +2,19 @@
   background-color: $main-blue;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: $s-size;
 }
 
 .navigator--a {
   border: 2px solid $white;
-  background-color: #6485AB;
+  background-color: $light-blue;
   border-radius: 50%;
   color: $white;
   display: block;
-  height: 4rem;
+  height: $xl-size;
   text-align: center;
   text-decoration: none;
-  line-height: 4rem;
-  width: 4rem;
+  line-height: $xl-size;
+  width: $xl-size;
 }

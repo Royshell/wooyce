@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Cleave from 'cleave.js/react';
+import { connect } from 'react-redux';
 import { addDebtsData } from '../actions/actions';
 import PageNavigator from './PageNavigator';
 
@@ -43,27 +43,37 @@ class DebtsPage extends React.Component {
         <h3 className="widget__subtitle">What is the total value of your debts?</h3>
         <div className="widget__main">
           <div>
-            <div>
+            <div className="widget__flex-wrapper">
               <label>Mortgage</label>
-              <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.mortgage} onChange={this.onMortgageChange}/>
+              <span>
+                <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.mortgage} onChange={this.onMortgageChange}/>
+              </span>
             </div>
-            <div>
-              <label>Auto loan</label>  
-             <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.autoLoan} onChange={this.onAutoLoanChange}/>
+            <div className="widget__flex-wrapper">
+              <label>Auto loan</label>
+              <span>
+                <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.autoLoan} onChange={this.onAutoLoanChange}/>
+              </span>
             </div>
-            <div>
+            <div className="widget__flex-wrapper">
               <label>Student loan </label>
-              <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.studentLoan} onChange={this.onStudentLoanChange}/>
+              <span>
+                <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.studentLoan} onChange={this.onStudentLoanChange}/>
+              </span>            
             </div>          
           </div>
-          <div>
-            <div>
+          <div className="widget__inner-section">
+            <div className="widget__flex-wrapper">
               <label>Credit card balance</label>
-              <span className="widget__currency">$</span><input options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.creditCardBalance} onChange={this.onCreditCardBalanceChange}/>
-            </div>
-            <div>
+              <span>
+                <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.creditCardBalance} onChange={this.onCreditCardBalanceChange}/>
+              </span>            
+              </div>
+            <div className="widget__flex-wrapper">
               <label>Other</label>
-              <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.other} onChange={this.onOtherChange}/>
+              <span>
+                <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.other} onChange={this.onOtherChange}/>
+              </span>
             </div>
           </div>  
         </div>
@@ -76,7 +86,6 @@ class DebtsPage extends React.Component {
 const mapDispatchToProps = (dispatch, props) => ({
   dispatchThenRoute: (state) => {
    dispatch(addDebtsData(state));
-   console.log(state);
  }
 });
 
