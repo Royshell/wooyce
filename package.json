@@ -6,6 +6,7 @@
   "repository": "git@github.com:Royshell/financial-checkup.git",
   "author": "<roy.shell5@gmail.com>",
   "scripts": {
+    "start": "webpack-dev-server --open",
     "serve": "live-server public/",
     "build": "webpack",
     "dev-server": "webpack-dev-server --open",
