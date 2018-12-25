@@ -56,7 +56,7 @@ class DebtsPage extends React.Component {
               </span>
             </div>
             <div className="widget__flex-wrapper">
-              <label>Student loan </label>
+              <label>Student loan</label>
               <span>
                 <span className="widget__currency">$</span><Cleave options={{numeral: true, numeralThousandsGroupStyle: 'thousand'}} value={this.state.studentLoan} onChange={this.onStudentLoanChange}/>
               </span>            
