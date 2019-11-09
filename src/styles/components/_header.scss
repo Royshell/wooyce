@@ -1,0 +1,34 @@
+header.mdl-layout__header {
+  height: 8rem;
+  font-family: 'Montserrat', sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+  background-color: $bg-color;
+  color: $main-blue;
+}
+
+header.mdl-layout__header nav > a.mdl-navigation__link {
+  color: $main-blue;
+  font-size: $s-size;
+  font-weight: 600;
+}
+
+header.mdl-layout__header .mdl-layout__drawer-button {
+  position: static;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  header.mdl-layout__header {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  header .mdl-layout__drawer-button {
+    display: none;
+  }
+
+  header.mdl-layout__header .mdl-layout__drawer-button {
+    position: absolute;
+  }
+}

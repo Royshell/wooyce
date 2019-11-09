@@ -1,0 +1,24 @@
+.footer {
+  background-color: $bg-color;
+  min-height: 35rem;
+}
+
+.footer button.footer__send-button {
+  width: 4.8rem;
+  height: 3.3rem;
+  min-width: 0;
+}
+
+.footer button.footer__send-button img {
+  width: auto;
+  height: auto;
+}
+
+.footer .widget__input-container {
+  padding: 0 1rem;
+}
+
+.footer input {
+  height: 4rem;
+  padding: 0.4rem;
+}

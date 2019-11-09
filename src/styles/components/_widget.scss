@@ -1,21 +1,113 @@
 .widget {
-  background-color: opacify($color: $white, $amount: 0.85);
-  border-bottom-right-radius: $m-size;
-  border-top-right-radius: $m-size;
+  text-align: center;
+  color: $main-blue;
+  margin: 9rem;
+}
+.flexable-widget {
   display: flex;
   flex-direction: column;
-  padding: $s-size $l-size;
-  width: 100%;
+  align-items: center;
+}
+.felixable-p {
+  max-width: 50rem;
+} 
+.widget__title {
+  font-size: $xl-size;
+  margin: $l-size;
+  font-family: 'Noto Serif', serif; 
+  line-height: normal;
 }
 
-.widget__title {
-  font-size: $l-size;
-  color: $light-blue;
-  margin: 0;
+.widget__main-p {
+  margin: $l-size;
+  font-family: Montserrat;
+  line-height: 1.67;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.widget__medium-p {
+  font-size: 18px;
+  line-height: 1.78;
+  font-weight: 600;
+}
+
+.widget__small-p {
+  margin: $m-size;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+}
+
+.widget--a {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 600;
+  color: $sandy-brown;
+  text-decoration: underline;
 }
 
 .widget__subtitle {
   font-weight: normal;
+  font-size: 40px;
+}
+
+.widget__input-wrapper {
+  margin: $l-size;
+}
+
+.widget__input-container {
+  display: inline-flex;
+  align-items: center;
+  border: solid 2px $light-blue;
+  border-radius: 8px;
+  background-color: $white;
+}
+.widget__sent-confirmation {
+  display: flex;
+  align-items: center;
+  width: 22rem;
+  height: 4rem;
+  padding: 0 1rem;
+  color: $sandy-brown;
+  border-radius: 8px;
+  background-color: #d9f1e1;
+  font-size: 14px;
+}
+.widget__flag {
+  padding: 2rem;
+  color: $dark-grey;
+  font-size: 16px;
+}
+
+.widget__flag ~ input {
+  border-left: solid 2px $light-blue;
+}
+
+.widget__columns {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.widget img {
+  // width: 75%;
+  // height: 75%;
+  // max-width: 25rem;
+  // max-height: 50rem;
+  width: 96px;
+  height: 87.4px;
+}
+
+.widget .widget__phone-img {
+  width: auto;
+  height: auto;
+}
+
+.widget__column {
+  width: 30%;
+  margin: $m-size;
 }
 
 .widget--label {
@@ -25,40 +117,93 @@
   padding-top: $s-size;
 }
 
-.widget__main {
+.widget__digit-input-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: $m-size 0;
+}
+
+.widget__digit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7.6rem;
+  width: 7.6rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  margin: 2%;
+  border-radius: 8px;
+}
+
+.widget__digit-input {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  border: solid 2px $main-blue;
+  border-radius: 8px;
+  font-size: $l-size;
+  
+  // font-size: 4.8rem;
+  // text-align: center;
+  // min-width: 5rem;
+  // min-height: 5rem;
+  // width: 10%;
+  // height: 13%;
+}
+
+.widget__digit-input:not([value]), .widget__digit-input[value=""] {
+  border: solid 2px $light-blue;
+}
+
+.widget__digit-input:focus {
+  border: solid 2px $main-blue;
+}
+.widget__input-valid {
+  border-color: green;
+}
+.widget__notification-img {
+  height: $xl-size;
+  width: $xl-size;
+}
+
+.widget__error-msg {
   display: flex;
 }
 
-.widget__main__column {
-  display: flex;
-  margin-right: 5%;
-  width: 45%;
+.widget__error-msg  img{
+  margin: $l-size $m-size;
+  width: $l-size;
+  height: $l-size;
 }
 
-.widget__main > div {
-  width: 50%;
+.widget img.widget__green-star {
+  width: 55%;
+  height: 85%;
 }
 
-.widget__currency {
-  color: $light-blue;
-  margin-right: $xs-size;
-}
-.widget__disclaimer {
-  font-size: $m-size ;
-  font-style: italic;
-}
-
-.widget__inner-section {
-  margin: 0 0 $m-size $m-size;
+button {
+  min-width: 17.5rem;
+  height: 5.2rem;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
 }
 
-.widget__flex-wrapper {
-  display: flex;
-  justify-content: space-between;
+button:disabled {
+  opacity: 0.7;
+}
+
+input {
+  border: none;
+  font-size: 16px;
+  padding: $s-size;
 }
 
 @media (min-width: $desktop-breakpoint) {
-  .header {
-    margin-bottom: $xl-size;
+  button {
+    font-size: $m-size;
   }
 }

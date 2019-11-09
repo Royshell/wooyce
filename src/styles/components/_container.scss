@@ -1,7 +1,30 @@
 .container {
+  // display: flex;
+  // height: 85rem;
+  // justify-content: center;
+  // align-items:  center;
+  // margin: $xl-size;
+}
+
+.tutorial > div {
   display: flex;
-  height: 33rem;
-  max-width: 150rem;
-  margin: 0 auto;
-  padding: 0 $m-size;
+  width: 100%;
+  max-width: 85vw;
+  height: 95%;
+  margin-top: 35rem;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tutorial-setup-2 {
+  display: block;
+}
+
+.tutorial-setup-2 > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  height: 100%;
+  justify-content: space-between;
 }
