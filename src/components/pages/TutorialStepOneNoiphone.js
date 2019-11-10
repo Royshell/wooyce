@@ -38,7 +38,7 @@ class TutorialStepOneNoiphone extends Component {
             <p className="widget__main-p">Step 1 of 3</p>
             <div className="widget__title">Download the Elefend app</div>
             <p className="widget__medium-p">This app will automatically silence unknown calls.</p>
-            <img className="widget__phone-img" src="assets/android.png"/> 
+            <img className="widget__natural-img" src="assets/android-app.png"/> 
             <p className="widget__medium-p">Go to the Google Play Store on your phone, search for the Elefend Unknown Calls Blocker app, and install it!</p>
             <div className="widget__input-wrapper">
             <button onClick={this.onConfirmSilenceCallers}>I downloaded and installed the app</button>

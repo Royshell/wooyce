@@ -25,11 +25,11 @@ export default class TutorialStepThree extends Component {
   onCallConfirm = () => {
       verifyCallForwarding().then(()=> {
           this.setState({isValidating: true});
-          const theClass = this;
+          const theClass = this; //once again, use arrow functions RS
 
           function checkCallStatusOnTimeout() {
               checkForwardingResult().then(() => {
-                  var lastFwdStatus = checkForwarding()
+                  var lastFwdStatus = checkForwarding() //again - use const and add a ';'
                   if ("SUCCESS" === lastFwdStatus) {
                       theClass.setState({isConfirmed:true})
                   } else if ("FAILED" === lastFwdStatus || "INIT" !== lastFwdStatus) {
@@ -45,38 +45,37 @@ export default class TutorialStepThree extends Component {
   };
   render() {
     return (
-      <div>
-        <SnakeBar acitveStep={3}/>
-        { !this.state.isValidating && !this.state.isConfirmed && !this.state.isFailed && <div className="widget">
-          <div className="widget__title">We sent you an SMS with the following code</div>
-          <p>{this.state.PIN}</p>
-          <p>Please copy and paste the code in your phone's dialer, press SEND and wait for confirmation</p>
+      <Fragment>
+        { !this.state.isConfirmed && !this.state.isFailed && <div className="widget flexable-widget">
+          <p className="widget__main-p">Step 3 of 3</p>
+          <div className="widget__title">Activate call forward of silenced calls</div>
+          <p className="widget__medium-p">This allows Elefend to receive, monitor, and forward back to you any silenced calls from unknown numbers.</p>
+          <p className="widget__medium-p">We just sent you text message with the following number</p>
+          <div className="widget__asterisk-number">
+            *6712
+          </div>
+          <p className="widget__medium-p">Call this number on your phone</p>
           <div className="widget__input-wrapper">
-            <button onClick={this.onCallConfirm}>I Confirm Conditional Call Forwarding is activated</button>
+            <button onClick={this.onCallConfirm}>I called the above number</button>
           </div>
         </div> }
-        { !this.state.isValidating && !this.state.isConfirmed && !this.state.isFailed && <div className="widget__input-wrapper">
-          <button onClick={this.toggleInfoMessage}>Why do I need to perform this step? </button>
-        </div> }
-        { this.state.isInfoMessageOpened && <div className="widget__inform-message">
-          <p>Once the unknown calls are blocked, activating the 'Conditinal Call Forwarding'</p>
-          <p>
-            <strong>Here's how</strong> <br />
-            You will get an SMS with a 'code' to be copied and pasted in your dialer<br />
-            You will then get a confirmation notification
-          </p>
-        </div> }
-        { this.state.isValidating && !this.state.isConfirmed && !this.state.isFailed && <ValidatingWidget/> }
+
+        { this.state.isValidating && <ValidatingWidget/> }
         { this.state.isConfirmed && <Fragment>
             <div className="widget">
-              <img className="widget__green-star" src='assets/gray-border-star.svg' />
+              <img className="widget__natural-img" src="assets/success.png" />
             </div>
             <div className="widget">
             <div className="widget__title">Thank you for joining Elefend Beta!</div>
-            <p>Please send us your feedback to <a href="mailto:info@elefend.com">info@elefend.com</a></p>
+            <div className="widget__input-wrapper">
+              <button><a href="mailto:info@elefend.com">Contact us for feedback</a></button>
+            </div>
+          
+            <p className="widget__medium-p">You can deactivate Elefend at any time</p>
+            <a className="widget--a">Learn how  </a>
           </div>
       </Fragment> }
-      { this.state.isFailed &&  <Fragment> 
+      { /* does not exist in new flow */ this.state.isFailed &&  <Fragment>  
         <div className="widget__error-msg">
           <img src="assets/x.png" />
           <div>
@@ -87,7 +86,7 @@ export default class TutorialStepThree extends Component {
           <button onClick={this.onCallConfirm}>I Confirm Conditional Call Forwarding is activated</button>
         </div>
       </Fragment> }
-      </div>
+    </Fragment>
     )
   }
 }

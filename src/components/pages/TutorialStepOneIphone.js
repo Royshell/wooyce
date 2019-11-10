@@ -44,10 +44,10 @@ class TutorialStepOneIphone extends Component {
     /*API Call goes here */
     verifyBlockedNumber().then(()=>{
       this.setState({ isValidating: true});
-      const theClass = this; // no need when using arrow functions
-      function checkCallStatusOnTimeout() { //old syntax. please use arrow functions
+      const theClass = this; // no need when using arrow functions RS
+      function checkCallStatusOnTimeout() { //old syntax. please use arrow functions RS
         checkCallResult().then(()=>{
-          var lastCallStatus =  getLastCallStatus()
+          var lastCallStatus =  getLastCallStatus() // please use 'const' instead of var and add ; RS
           if ("HUNGUP" === lastCallStatus) {
             theClass.props.history.push('/tutorial-step-two');
           } else if ("ANSWERED" === lastCallStatus || "INIT" !== lastCallStatus)
@@ -81,7 +81,7 @@ class TutorialStepOneIphone extends Component {
               { !this.state.isValditaionFailed && <Fragment>
               { <hr/> }
                 <p className="widget__main-p">{ this.getStageText(this.state.currentStage) }</p>
-                <img className="widget__phone-img" src={`assets/iphone${this.state.currentStage}.png`} /> 
+                <img className="widget__natural-img" src={`assets/iphone${this.state.currentStage}.png`} /> 
               </Fragment>}
           <div className="widget__input-wrapper">
             <button onClick={this.onNextStage}>{this.state.isValditaionFailed ? 'Try again' : 'Next' }</button>

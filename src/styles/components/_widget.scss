@@ -3,14 +3,17 @@
   color: $main-blue;
   margin: 9rem;
 }
+
 .flexable-widget {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .felixable-p {
   max-width: 50rem;
 } 
+
 .widget__title {
   font-size: $xl-size;
   margin: $l-size;
@@ -20,7 +23,7 @@
 
 .widget__main-p {
   margin: $l-size;
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.67;
   font-size: 24px;
   font-weight: 700;
@@ -34,14 +37,14 @@
 
 .widget__small-p {
   margin: $m-size;
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.71;
 }
 
 .widget--a {
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: $sandy-brown;
@@ -57,6 +60,11 @@
   margin: $l-size;
 }
 
+.widget__icons-wrapper {
+  display: flex;
+  margin: $l-size;
+}
+
 .widget__input-container {
   display: inline-flex;
   align-items: center;
@@ -64,6 +72,7 @@
   border-radius: 8px;
   background-color: $white;
 }
+
 .widget__sent-confirmation {
   display: flex;
   align-items: center;
@@ -75,6 +84,7 @@
   background-color: #d9f1e1;
   font-size: 14px;
 }
+
 .widget__flag {
   padding: 2rem;
   color: $dark-grey;
@@ -85,10 +95,20 @@
   border-left: solid 2px $light-blue;
 }
 
-.widget__columns {
-  display: flex;
-  justify-content: center;
-  align-items: end;
+.widget_os-block {
+  border: solid 2px $light-blue;
+  border-radius: 12px;
+  background-color: #fcfcfc;
+  padding: $m-size;
+  margin: $s-size;
+  cursor: pointer;
+}
+
+.widget_os-block-title {
+  margin: $s-size;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .widget img {
@@ -100,7 +120,7 @@
   height: 87.4px;
 }
 
-.widget .widget__phone-img {
+.widget .widget__natural-img {
   width: auto;
   height: auto;
 }
@@ -186,7 +206,7 @@
 button {
   min-width: 17.5rem;
   height: 5.2rem;
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 600;
   border-radius: 8px;
@@ -196,10 +216,30 @@ button:disabled {
   opacity: 0.7;
 }
 
+button a {
+  color: $white;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 input {
   border: none;
   font-size: 16px;
   padding: $s-size;
+}
+
+.widget__asterisk-number {
+  width: 18rem;
+  height: 8rem;
+  padding: 2rem;
+  margin: 2rem;
+  border: solid 2px $light-blue;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 6.4rem;
+  font-weight: 600;
+  line-height: normal;
+  border-radius: 8px;
 }
 
 @media (min-width: $desktop-breakpoint) {
