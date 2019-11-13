@@ -41,7 +41,7 @@ class PINCodePage extends Component {
     await this.setState({ PIN: this.state.PIN + digit});
     const allElements = document.querySelectorAll('input');
     const currentIndex = [...allElements].findIndex(el => currentNode.isEqualNode(el)); 
-    console.log(currentIndex);
+
     if (currentIndex < 3 && !isNaN(digit - parseFloat(digit))) {
       allElements[currentIndex + 1].focus();
     } 
@@ -60,7 +60,7 @@ class PINCodePage extends Component {
         this.setState({isChecked: true});
         this.setState({PIN: ''});
         this.setState({isValid: true});
-        this.props.history.push('/pretutorial');
+        this.props.history.push('/tutorial-step-one');
       } else {
           const allElements = document.querySelectorAll('input');
           console.log("Last element:"+allElements[3].value);
@@ -96,50 +96,44 @@ class PINCodePage extends Component {
           <div className="widget__digit-container">
             <Cleave
               tabindex="0"
-              className={'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
-              options={{ numericOnly: true, blocks: [1]}}
-              onChange={this.onDigitAdd}
-              onInit={this.onCleave0Init}
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
+              options={ { numericOnly: true, blocks: [1]} }
+              onChange={ this.onDigitAdd }
+              onInit={ this.onCleave0Init }
             />
           </div>
           <div className="widget__digit-container">
             <Cleave
               tabindex="1"
-              className={'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
-              options={{numericOnly: true, blocks: [1]}}
-              onChange={this.onDigitAdd}
-              onInit={this.onCleave1Init}
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
+              options={ {numericOnly: true, blocks: [1]} }
+              onChange={ this.onDigitAdd }
+              onInit={ this.onCleave1Init }
             />
           </div>
           <div className="widget__digit-container">
             <Cleave
               tabindex="2"
-              className={'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
-              options={{numericOnly: true, blocks: [1]}}
-              onChange={this.onDigitAdd}
-              onInit={this.onCleave2Init}
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
+              options={ {numericOnly: true, blocks: [1]} }
+              onChange={ this.onDigitAdd }
+              onInit={ this.onCleave2Init }
             />
           </div>
           <div className="widget__digit-container">
             <Cleave
               tabindex="3"
-              className={'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
-              options={{numericOnly: true, blocks: [1]}}
-              onChange={this.onDigitAdd}
-              onInit={this.onCleave3Init}
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
+              options={ {numericOnly: true, blocks: [1]} }
+              onChange={ this.onDigitAdd }
+              onInit={ this.onCleave3Init }
             />
           </div>
         </div>
         { !this.state.isChecked && !this.state.isValid && 
         <Fragment>
-          <button onClick={this.checkPinFromButton}>Verify</button>
-          <div className="widget__input-wrapper">
-            <button onClick={this.resendPIN}>Resend PIN</button>
-          </div>
+          <button onClick={ this.checkPinFromButton }>Verify</button>
         </Fragment> 
-        }
-        { this.state.isChecked && this.state.isValid &&  
-          <img className="widget__notification-img" src="assets/checkmark.png"/> 
         }
       </div>
     )

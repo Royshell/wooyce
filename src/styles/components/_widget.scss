@@ -49,12 +49,13 @@
   font-weight: 600;
   color: $sandy-brown;
   text-decoration: underline;
+  cursor: pointer;
 }
 
-.widget__subtitle {
-  font-weight: normal;
-  font-size: 40px;
-}
+// .widget__subtitle {
+//   font-weight: normal;
+//   font-size: 40px;
+// }
 
 .widget__input-wrapper {
   margin: $l-size;
@@ -112,10 +113,6 @@
 }
 
 .widget img {
-  // width: 75%;
-  // height: 75%;
-  // max-width: 25rem;
-  // max-height: 50rem;
   width: 96px;
   height: 87.4px;
 }
@@ -125,17 +122,12 @@
   height: auto;
 }
 
-.widget__column {
-  width: 30%;
-  margin: $m-size;
-}
-
-.widget--label {
-  display: inline-block;
-  line-height: 1.1rem;
-  margin: 0 $s-size $s-size 0;
-  padding-top: $s-size;
-}
+// .widget--label {
+//   display: inline-block;
+//   line-height: 1.1rem;
+//   margin: 0 $s-size $s-size 0;
+//   padding-top: $s-size;
+// }
 
 .widget__digit-input-wrapper {
   display: flex;
@@ -164,13 +156,6 @@
   border: solid 2px $main-blue;
   border-radius: 8px;
   font-size: $l-size;
-  
-  // font-size: 4.8rem;
-  // text-align: center;
-  // min-width: 5rem;
-  // min-height: 5rem;
-  // width: 10%;
-  // height: 13%;
 }
 
 .widget__digit-input:not([value]), .widget__digit-input[value=""] {
@@ -179,13 +164,6 @@
 
 .widget__digit-input:focus {
   border: solid 2px $main-blue;
-}
-.widget__input-valid {
-  border-color: green;
-}
-.widget__notification-img {
-  height: $xl-size;
-  width: $xl-size;
 }
 
 .widget__error-msg {
@@ -196,11 +174,6 @@
   margin: $l-size $m-size;
   width: $l-size;
   height: $l-size;
-}
-
-.widget img.widget__green-star {
-  width: 55%;
-  height: 85%;
 }
 
 button {
@@ -214,6 +187,10 @@ button {
 
 button:disabled {
   opacity: 0.7;
+}
+
+button:hover {
+  opacity: 0.2;
 }
 
 button a {
@@ -230,7 +207,7 @@ input {
 }
 
 .widget__asterisk-number {
-  width: 18rem;
+  width: 45rem;
   height: 8rem;
   padding: 2rem;
   margin: 2rem;

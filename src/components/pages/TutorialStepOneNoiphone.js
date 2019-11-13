@@ -5,25 +5,25 @@ import {checkCallResult, getLastCallStatus, verifyBlockedNumber} from "../../ser
 
 class TutorialStepOneNoiphone extends Component {
   state = {
+    isValditaionFailed: true,
     isValidating: false,
-    isValditaionFailed: false,
   };
-  onConfirmSilenceCallers = () => {
+  onConfirmDownload = () => {
     /*API Call goes here */
     verifyBlockedNumber().then(()=>{
       this.setState({ isValidating: true});
-      const theClass = this;
-      function checkCallStatusOnTimeout() {
-          checkCallResult().then(()=>{
-          var lastCallStatus =  getLastCallStatus()
+      const theClass = this; // no need when using arrow functions RS
+      function checkCallStatusOnTimeout() { //old syntax. please use arrow functions RS
+        checkCallResult().then(()=>{
+          var lastCallStatus =  getLastCallStatus() // please use 'const' instead of var and add ; RS
           if ("HUNGUP" === lastCallStatus) {
-            theClass.props.history.push('/tutorial-step-two');
+            theClass.props.history.push('/tutorial-step-two-noiphone');
           } else if ("ANSWERED" === lastCallStatus || "INIT" !== lastCallStatus)
-              {
-                theClass.setState({isValditaionFailed: true});
-                theClass.setState({isValidating: false});
+          {
+            theClass.setState({isValditaionFailed: true});
+            theClass.setState({isValidating: false}); 
           } else {
-              setTimeout(checkCallStatusOnTimeout,10000);
+            setTimeout(checkCallStatusOnTimeout,10000);
           }
         })
       }
@@ -33,34 +33,31 @@ class TutorialStepOneNoiphone extends Component {
   }
   render() {
     return (
-      <div>
-        { !this.state.isValditaionFailed && <div className="widget">
-            <p className="widget__main-p">Step 1 of 3</p>
-            <div className="widget__title">Download the Elefend app</div>
-            <p className="widget__medium-p">This app will automatically silence unknown calls.</p>
-            <img className="widget__natural-img" src="assets/android-app.png"/> 
-            <p className="widget__medium-p">Go to the Google Play Store on your phone, search for the Elefend Unknown Calls Blocker app, and install it!</p>
-            <div className="widget__input-wrapper">
-            <button onClick={this.onConfirmSilenceCallers}>I downloaded and installed the app</button>
-            </div>
-          </div> 
-        }
-        { this.state.isValidating && <ValidatingWidget /> }
-        { this.state.isValditaionFailed &&  <Fragment> 
-          <div className="widget__error-msg">
-            <img src="assets/x.png" />
-            <div>
-              <p>Seems that auto blocking of unknown numbers is not working properly, please activate it and if the problem persists contact us</p>
-            </div>
-          </div>
+      <div className="widget">
+        <p className="widget__main-p">Step 1 of 3</p>
+        <div className="widget__title"> { !this.state.isValditaionFailed ? 'Download the Elefend app' : 'Silence unknown callers' }</div>
+        { !this.state.isValditaionFailed && <Fragment>
+          <p className="widget__medium-p">This app will automatically silence unknown calls.</p>
+          <img className="widget__natural-img" src="assets/android-app.png"/> 
+          <p className="widget__medium-p">Go to the Google Play Store on your phone, search for the Elefend Unknown Calls Blocker app, and install it!</p>
           <div className="widget__input-wrapper">
-            <button onClick={this.onConfirmSilenceCallers}>I downloaded and installed the app</button>
+            <button onClick={ this.onConfirmDownload }>I downloaded and installed the app</button>
           </div>
-        </Fragment>
-      }
+        </Fragment>}
+        { this.state.isValditaionFailed &&  <Fragment>
+          <img src={'assets/error.png'} /> 
+          <p className="widget__medium-p">Unknown callers are not properly blocked on your phone</p>
+          <p className="widget__small-p">If you’re sure that unknown callers are blocked on your phone, confirm below I confirm that unknown numbers are blocked on my phone</p>
+          <a className="widget--a" onClick={ this.onConfirmDownload }>I confirm that I added Elefend as a contact</a>
+          <div className="widget__input-wrapper">
+            <button onClick={ this.onConfirmDownload }>Try again</button>
+          </div> 
+          <a className="widget--a" onClick={ this.onConfirmDownload }>I confirm that I added Elefend as a contact</a>
+        </Fragment> }
+        { this.state.isValidating && <ValidatingWidget /> }
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withRouter(TutorialStepOneNoiphone);

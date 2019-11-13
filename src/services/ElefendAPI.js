@@ -1,6 +1,6 @@
 
 let uuid;
-let sessionId;
+let sessionId; //seems to be not in use
 let savedPhoneNumber;
 let savedDidNumber;
 let my_client_id;
@@ -73,7 +73,7 @@ const login = async() => {
     my_client_id = uuidv4()
   }
 
-  console.log("Connecting with client ID:"+my_client_id);
+  console.log("Connecting with client ID:"+my_client_id); // please avoid using console.log not in error
   const body = {
     app_secret: '49c5593e35e60467ef6316412e59aa420fa5da39',
     client_id: my_client_id // need to modified
@@ -115,7 +115,7 @@ const registerPhoneNumber = async(phoneNumber) => {
       'Content-type': 'application/json; charset=UTF-8'
       }
     });
-    console.log("Got result:"+results);
+    console.log("Got result:"+results); //avoid using console.log if it isn't an error
     const results = await response.json();
     const { result } = results; // new API
     api_states.registered = true;
@@ -134,7 +134,7 @@ const checkCarrier = async(phoneNumber) => {
   }
 
   try {
-    console.log("Calling textmagic");
+    console.log("Calling textmagic"); //avoid using console.log if it isn't an error
 
     const response = await fetch(proxyurl+'https://rest.textmagic.com/api/v2/lookups/'+phoneNumber+'?country=US', {
       method: 'GET',
@@ -148,7 +148,7 @@ const checkCarrier = async(phoneNumber) => {
 
     const results = await response.json();
 
-    console.log("Text magic response:"+response);
+    console.log("Text magic response:"+response); //avoid using console.log if it isn't an error
     var carrier;
     api_states.carrier = results["carrier"];
   } catch(err) {
@@ -207,7 +207,7 @@ const sendForwardingNumberAsSMS = async() => {
     });
 
     const results = await response.json();
-    console.log("Result from forwarding:"+results);
+    console.log("Result from forwarding:"+results); //avoid using console.log not in an error
     savedDidNumber = results["did_line"];
     console.log("DID number:"+savedDidNumber);
     if(result!=-1) {
@@ -263,7 +263,7 @@ const verifyPhoneNumber = async(pincode) => {
     });
 
     const results = await response.json();
-    const { result, did_line } = results; // paramas from response
+    const { result, did_line } = results; // paramas from response - did_line doesn't seem to be used
     if(result!=-1) {
       api_states.verified = true;
     }
@@ -352,7 +352,7 @@ const checkForwardingResult = async() => {
 
 const verifyElefendContact = async() => { 
   const body = {
-    client_id: my_client_id, // need to modified
+    client_id: my_client_id, // needs to modified
     login_key: uuid,
     phone: savedPhoneNumber,
   };

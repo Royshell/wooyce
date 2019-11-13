@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Cleave from 'cleave.js/react';
+import ValidatingWidget from '../page-components/ValidatingWidget';
+
 import {
     carrierOk,
     checkCarrier,
@@ -14,6 +16,14 @@ class PhoneFormPage extends Component {
   state = {
     phoneNumber: '',
     login_status: 'Trying'
+  };
+  onLoad = async() => { //I've created this function based on the functions which triggers when the component loads. Verify it works properly
+    await login();
+    if(checkLogin()) {
+        this.setState({login_status:'OK'});
+    } else {
+        this.setState({login_status:'Failed'})
+    }
   };
    onPhoneNumberInputChange = (e) => {
     const phoneNumber = e.target.value;
@@ -48,7 +58,7 @@ class PhoneFormPage extends Component {
     }
   };
     render() {
-        if(this.state.login_status=='OK') { // please use === instead of == also, there also should be a space before and after every logical operator RS
+        if(this.state.login_status=='OK') { // please use === instead of == also, there = should be a space before and after every logical operator. Ident the code
           return (
             <div className="widget">
               <p className="widget__main-p"> Before we get started </p>
@@ -61,27 +71,33 @@ class PhoneFormPage extends Component {
                   </span>
                   <Cleave
                     placeholder="631-204-1535"
-                    onChange={this.onPhoneNumberInputChange}
+                    onChange={ this.onPhoneNumberInputChange }
                   />
                 </div>
               </div>    
-              <button onClick={this.getPhoneNumber}>Verify</button>
+              <button onClick={ this.getPhoneNumber} >Verify</button>
               <p className="widget__small-p">By clicking VERIFY, I understand and agree to Elefend's <a className="widget--a"> terms and conditions </a> and <a className="widget__a" > privacy policy </a></p>
             </div>
             )
         }
 
-        if(this.state.login_status=='Trying') { // That is not part of the orginal flow. I thought we were using a loader/spinner for that. RS
-            return (<div className="widget">
-                <div className="widget__title">Connecting To Server</div>
-            </div>)
+        if(this.state.login_status=='Trying') {
+            return (
+              <ValidatingWidget message={ 'Loading' }/>
+            );
         }
-        else {  //This part wasn't part of the orginial. If we need it, it should be designed
-            return (<div className="widget"> 
-                <div className="widget__title">Connection To Server Failed, Please Try later</div>
-                <div className="widget__title">Or Contact Elefend Support</div>
-            </div>)
-
+        else { 
+            return ( 
+            <div className="widget">
+              <div className="widget__title">Connection to Server Failed</div>
+              <div className="widget--logo--wrapper">
+                <img src="assets/error.png"></img>        
+              </div>
+              <div className="widget__input-wrapper">
+                <button onClick={ this.onLoad }>Try again</button>
+              </div>
+            </div>
+          )
         }
     }
 }

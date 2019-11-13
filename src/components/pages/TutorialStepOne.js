@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import SnakeBar from '../page-components/SnakeBar';
 import { withRouter } from 'react-router';
 
 class TutorialStepOne extends Component {
   state = {
-    isIphone: undefined
+    isIphone: 'unset'
   };
   isIphoneSelected = (isIphone) => {
-    this.setState( { isIphone });
+    this.setState({ isIphone });
   };
   referToPage = () => {
-    this.state.isIphone ? this.props.history.push('/tutorial-step-one-iphone') :this.props.history.push('/tutorial-step-one-noiphone');
+    this.state.isIphone ? this.props.history.push('/tutorial-step-one-iphone') : this.props.history.push('/tutorial-step-one-noiphone');
   };
   render() {
     return (
@@ -25,21 +24,21 @@ class TutorialStepOne extends Component {
             <div className="widget_os-block"  onClick={ () => this.isIphoneSelected(true) }>
               <img className="widget__natural-img" src="assets/apple-icon.png"/>
               <div className="widget_os-block-title">iPhone</div>
-              <input readOnly checked={ this.state.isIphone }  type="radio" />
+              <input checked={ this.state.isIphone && this.state.isIphone !== 'unset' }  type="radio"  readOnly />
             </div>
             <div className="widget_os-block" onClick={ () => this.isIphoneSelected(false) }>
               <img className="widget__natural-img" src="assets/android-icon.png"/>
               <div className="widget_os-block-title">Android</div>
-              <input readOnly checked={ !this.state.isIphone && this.state.isIphone !== undefined } type="radio" />
+              <input checked={ !this.state.isIphone && this.state.isIphone !== 'unset' } type="radio" readOnly/>
             </div>
           </div>
           <div className="widget_input-wrapper">
-            <button disabled={ this.state.isIphone === undefined } onClick={ this.referToPage }>Next</button>
+            <button disabled={ this.state.isIphone === 'unset' } onClick={ this.referToPage }>Next</button>
           </div>
         </div>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withRouter(TutorialStepOne);

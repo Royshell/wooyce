@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Cleave from 'cleave.js/react';
 import { withRouter } from 'react-router';
-import { runInThisContext } from 'vm';
 
 class UnavailablePage extends Component {
   state = {
@@ -16,7 +15,10 @@ class UnavailablePage extends Component {
     //API TO EMAIL ADDRESS GOES HERE
 
     //If email sent
-    this.setState({ ismailSent: true })
+    this.setState({ ismailSent: true });
+  };
+  referToPhoneFormPage = () => {
+    this.props.history.push('/phone-form');
   };
   render() {
     return (
@@ -26,7 +28,7 @@ class UnavailablePage extends Component {
             <img src="assets/nosupported.png"></img>        
           </div>
           <div className="widget__title">Unfortunately Elefend doesn't support your phone carrier</div>
-          <button>Try a different phone number</button>
+          <button onClick={ this.referToPhoneFormPage }>Try a different phone number</button>
 
       </div>
       <footer className="footer">
@@ -36,20 +38,18 @@ class UnavailablePage extends Component {
            { !this.state.ismailSent && <div className="widget__input-container">
             <Cleave
              placeholder="example@mail.com" 
-             onChange={this.onEmailAddressChange}
+             onChange={ this.onEmailAddressChange }
             />
-            <button className="footer__send-button" onClick={this.getEmailAddress}><img src="assets/send.png" /></button>
+            <button className="footer__send-button" onClick={ this.getEmailAddress }><img src="assets/send.png" /></button>
           </div> }
-          {
-            this.state.ismailSent && <div className="widget__sent-confirmation">
-              Thanks! We'll be in touch soon.
-            </div>
-          }
+          { this.state.ismailSent && <div className="widget__sent-confirmation">
+            Thanks! We'll be in touch soon.
+          </div> }
         </div>
       </footer>
      </Fragment>
     );
-  }
-}
+  };
+};
 
 export default withRouter(UnavailablePage);

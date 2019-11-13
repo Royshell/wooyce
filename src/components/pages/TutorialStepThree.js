@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import SnakeBar from '../page-components/SnakeBar';
 import ValidatingWidget from '../page-components/ValidatingWidget';
 import {
-    checkCallResult, checkForwarding, checkForwardingResult,
+    checkForwarding, 
+    checkForwardingResult,
     getCallForwardingNumber,
-    getLastCallStatus,
-    verifyBlockedNumber, verifyCallForwarding
+    verifyCallForwarding
 } from '../../services/ElefendAPI'
 
 export default class TutorialStepThree extends Component {
@@ -51,42 +50,31 @@ export default class TutorialStepThree extends Component {
           <div className="widget__title">Activate call forward of silenced calls</div>
           <p className="widget__medium-p">This allows Elefend to receive, monitor, and forward back to you any silenced calls from unknown numbers.</p>
           <p className="widget__medium-p">We just sent you text message with the following number</p>
+          <img className="widget__natural-img" src="assets/dial.svg" />
           <div className="widget__asterisk-number">
-            *6712
+            *67*13221*11#
           </div>
           <p className="widget__medium-p">Call this number on your phone</p>
           <div className="widget__input-wrapper">
-            <button onClick={this.onCallConfirm}>I called the above number</button>
+            <button onClick={ this.onCallConfirm }>I called the above number</button>
           </div>
         </div> }
-
         { this.state.isValidating && <ValidatingWidget/> }
         { this.state.isConfirmed && <Fragment>
             <div className="widget">
               <img className="widget__natural-img" src="assets/success.png" />
             </div>
             <div className="widget">
-            <div className="widget__title">Thank you for joining Elefend Beta!</div>
-            <div className="widget__input-wrapper">
+              <div className="widget__title">Thank you for joining Elefend Beta!</div>
+              <div className="widget__input-wrapper">
               <button><a href="mailto:info@elefend.com">Contact us for feedback</a></button>
             </div>
           
             <p className="widget__medium-p">You can deactivate Elefend at any time</p>
-            <a className="widget--a">Learn how  </a>
+            <a className="widget--a">Learn how </a>
           </div>
-      </Fragment> }
-      { /* does not exist in new flow */ this.state.isFailed &&  <Fragment>  
-        <div className="widget__error-msg">
-          <img src="assets/x.png" />
-          <div>
-            <p>Call routing is not working properly, please try solve it with your carrier and try again. If the problem persists contact us.</p>
-          </div>
-        </div>
-        <div className="widget__input-wrapper">
-          <button onClick={this.onCallConfirm}>I Confirm Conditional Call Forwarding is activated</button>
-        </div>
-      </Fragment> }
-    </Fragment>
-    )
-  }
-}
+        </Fragment> }
+       </Fragment>
+    );
+  };
+};

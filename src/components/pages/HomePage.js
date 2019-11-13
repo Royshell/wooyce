@@ -12,13 +12,13 @@ class HomePage extends Component {
           <img src="assets/logo.png"></img>        
         </div>
         <div>
-          <div className="widget__title">Get started with Elefend</div>
+          <div className="widget__title">Get started with Elefend (Beta)</div>
           <p className="widget__main-p">Elefend identifies scams by monitoring and analyzing calls from { <br/> } unknown callers and alerting you if there's a risk while you're { <br/> }   on the call</p>
         </div>
         <button onClick={this.goToApp}>Let's Start</button>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withRouter(HomePage);
