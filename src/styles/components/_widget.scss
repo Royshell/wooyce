@@ -164,31 +164,6 @@
   height: $l-size;
 }
 
-button {
-  min-width: 17.5rem;
-  height: 5.2rem;
-  padding: 0 $m-size;
-  font-family: 'Montserrat', sans-serif;
-  font-size: $s-size;
-  font-weight: 700;
-  border-radius: $round-corner;
-}
-
-button:disabled {
-  opacity: 0.7;
-}
-
-button:hover:not(:disabled) {
-  opacity: 0.2;
-}
-
-button a {
-  color: $white;
-  text-decoration: none;
-  font-size: $m-size;
-  font-weight: 600;
-}
-
 input {
   border: none;
   font-size: $s-size;

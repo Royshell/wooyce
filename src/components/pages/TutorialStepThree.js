@@ -22,6 +22,8 @@ export default class TutorialStepThree extends Component {
     this.setState( { isInfoMessageOpened: !this.state.isInfoMessageOpened });
   };
   onCallConfirm = () => {
+    this.setState({ isValidating: true });
+    
       verifyCallForwarding().then(()=> {
           this.setState({isValidating: true});
           const theClass = this; //once again, use arrow functions RS

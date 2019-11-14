@@ -1,6 +1,6 @@
 header.mdl-layout__header {
   height: 8rem;
-  font-family: ''Montserrat', sans-serif', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
@@ -11,7 +11,7 @@ header.mdl-layout__header {
 header.mdl-layout__header nav > a.mdl-navigation__link {
   color: $main-blue;
   font-size: $s-size;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 header.mdl-layout__header .mdl-layout__drawer-button {
