@@ -12,7 +12,7 @@ class UnavailablePage extends Component {
     this.setState({ emailAddress });
   };
   getEmailAddress = () => {
-    //API TO EMAIL ADDRESS GOES HERE
+    //API TO EMAIL ADDRESS GOES HERE - seems like there is no API function for that
 
     //If email sent
     this.setState({ ismailSent: true });
