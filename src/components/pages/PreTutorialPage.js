@@ -33,7 +33,7 @@ class PreTutorialPage extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

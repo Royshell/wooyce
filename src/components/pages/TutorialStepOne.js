@@ -22,12 +22,12 @@ class TutorialStepOne extends Component {
           <p className="widget__medium-p">What type of phone do you have?</p>
           <div className="widget__icons-wrapper">
             <div className="widget_os-block"  onClick={ () => this.isIphoneSelected(true) }>
-              <img className="widget__natural-img" src="assets/apple-icon.png"/>
+              <img className="widget__natural-img" src="assets/img/apple-icon.png"/>
               <div className="widget_os-block-title">iPhone</div>
               <input checked={ this.state.isIphone && this.state.isIphone !== 'unset' }  type="radio"  readOnly />
             </div>
             <div className="widget_os-block" onClick={ () => this.isIphoneSelected(false) }>
-              <img className="widget__natural-img" src="assets/android-icon.png"/>
+              <img className="widget__natural-img" src="assets/img/android-icon.png"/>
               <div className="widget_os-block-title">Android</div>
               <input checked={ !this.state.isIphone && this.state.isIphone !== 'unset' } type="radio" readOnly/>
             </div>
@@ -38,7 +38,7 @@ class TutorialStepOne extends Component {
         </div>
       </div>
     );
-  };
-};
+  }
+}
 
 export default withRouter(TutorialStepOne);

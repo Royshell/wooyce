@@ -3,19 +3,20 @@ $light-blue: #eeeeee;
 $main-blue: #1a2643;
 $dark-grey: #231f20;
 $bg-color: #f6f6f6;
+$msg-bg-color: #d9f1e1;
 $white: #ffffff;
 $sandy-brown: #c79f5e;
 
 //Sizes
-$xs-size: .7rem;
-$s-size: 1.5rem;
-$m-size: 2rem;
-$l-size: 4rem;
-$xl-size: 4.8rem;
+$xs-size: 1.4rem;
+$s-size: 1.6rem;
+$m-size: 1.8rem;
+$l-size: 2.4rem;
+$xl-size: 4rem;
+$xxl-size: 6.4rem;
 
-// xs 14px
-// s 16px
-// m 18px
-// l 24px
-// xl 40 
-$desktop-breakpoint: 10.2rem;
+//Border radius
+$round-corner: 0.8rem;
+$extra-round-corner: 1.2rem;
+
+$desktop-breakpoint: 1025px;

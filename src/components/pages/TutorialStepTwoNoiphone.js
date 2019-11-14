@@ -101,13 +101,13 @@ class TutorialStepTwoNoIphone extends Component {
         <div className="widget__title">Add Elefend contact to your phone</div>
         { !this.state.isValditaionFailed && <p className="widget__medium-p">{ this.getStageText(this.state.currentStage) }</p> }
         { this.state.isValditaionFailed &&  <Fragment>
-          <img src={'assets/error.png'} /> 
+          <img src={'assets/img/error.png'} /> 
           <p className="widget__medium-p">Elefend has not been added as a contact to your phone.</p>
           <p className="widget__small-p">If you are sure that you added Elefend as a contact, confirm below</p>
           <a className="widget--a" onClick={ this.onConfirmSilenceCallers }>I confirm that I added Elefend as a contact</a>
         </Fragment> }
         { !this.state.isValditaionFailed && <Fragment>
-          <img className="widget__natural-img" src={ `assets/noIphone-2-${this.state.currentStage}.png` } /> 
+          <img className="widget__natural-img" src={ `assets/img/android-2-${this.state.currentStage}.png` } /> 
         </Fragment> }
         <div className="widget__input-wrapper">
           <button onClick={ this.onNextStage }>{ this.getStageText(this.state.currentStage, 'button') }</button>
@@ -116,7 +116,7 @@ class TutorialStepTwoNoIphone extends Component {
         { this.state.isValidating && <ValidatingWidget /> }     
       </div>
     );
-  };
-};
+  }
+}
 
 export default withRouter(TutorialStepTwoNoIphone);

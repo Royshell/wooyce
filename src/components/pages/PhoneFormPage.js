@@ -76,14 +76,14 @@ class PhoneFormPage extends Component {
                 </div>
               </div>    
               <button onClick={ this.getPhoneNumber} >Verify</button>
-              <p className="widget__small-p">By clicking VERIFY, I understand and agree to Elefend's <a className="widget--a"> terms and conditions </a> and <a className="widget__a" > privacy policy </a></p>
+              <p className="widget__small-p">By clicking VERIFY, I understand and agree to Elefend's <a className="widget--a"> terms and conditions </a> and <a className="widget--a" > privacy policy </a></p>
             </div>
             )
         }
 
         if(this.state.login_status=='Trying') {
             return (
-              <ValidatingWidget message={ 'Loading' }/>
+              <ValidatingWidget message={ 'Loading...' }/>
             );
         }
         else { 
@@ -91,7 +91,7 @@ class PhoneFormPage extends Component {
             <div className="widget">
               <div className="widget__title">Connection to Server Failed</div>
               <div className="widget--logo--wrapper">
-                <img src="assets/error.png"></img>        
+                <img src="assets/img/error.png"></img>        
               </div>
               <div className="widget__input-wrapper">
                 <button onClick={ this.onLoad }>Try again</button>

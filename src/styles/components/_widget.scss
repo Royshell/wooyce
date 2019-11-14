@@ -1,7 +1,7 @@
 .widget {
   text-align: center;
   color: $main-blue;
-  margin: 9rem;
+  margin: $xl-size;
 }
 
 .flexable-widget {
@@ -25,37 +25,32 @@
   margin: $l-size;
   font-family: 'Montserrat', sans-serif;
   line-height: 1.67;
-  font-size: 24px;
+  font-size: $l-size;
   font-weight: 700;
 }
 
 .widget__medium-p {
-  font-size: 18px;
+  font-size: $m-size;
   line-height: 1.78;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .widget__small-p {
   margin: $m-size;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: $xs-size;
+  font-weight: 700;
   line-height: 1.71;
 }
 
 .widget--a {
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: $xs-size;
+  font-weight: 700;
   color: $sandy-brown;
   text-decoration: underline;
   cursor: pointer;
 }
-
-// .widget__subtitle {
-//   font-weight: normal;
-//   font-size: 40px;
-// }
 
 .widget__input-wrapper {
   margin: $l-size;
@@ -70,7 +65,7 @@
   display: inline-flex;
   align-items: center;
   border: solid 2px $light-blue;
-  border-radius: 8px;
+  border-radius: $round-corner;
   background-color: $white;
 }
 
@@ -78,18 +73,18 @@
   display: flex;
   align-items: center;
   width: 22rem;
-  height: 4rem;
+  height: $xl-size;
   padding: 0 1rem;
   color: $sandy-brown;
-  border-radius: 8px;
-  background-color: #d9f1e1;
-  font-size: 14px;
+  border-radius: $round-corner;
+  background-color: $msg-bg-color;
+  font-size: $xs-size;
 }
 
 .widget__flag {
-  padding: 2rem;
+  padding: $m-size;
   color: $dark-grey;
-  font-size: 16px;
+  font-size: $s-size;
 }
 
 .widget__flag ~ input {
@@ -98,7 +93,7 @@
 
 .widget_os-block {
   border: solid 2px $light-blue;
-  border-radius: 12px;
+  border-radius: $extra-round-corner;
   background-color: #fcfcfc;
   padding: $m-size;
   margin: $s-size;
@@ -108,7 +103,7 @@
 .widget_os-block-title {
   margin: $s-size;
   font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
+  font-size: $m-size;
   font-weight: 600;
 }
 
@@ -122,13 +117,6 @@
   height: auto;
 }
 
-// .widget--label {
-//   display: inline-block;
-//   line-height: 1.1rem;
-//   margin: 0 $s-size $s-size 0;
-//   padding-top: $s-size;
-// }
-
 .widget__digit-input-wrapper {
   display: flex;
   justify-content: center;
@@ -141,10 +129,10 @@
   align-items: center;
   height: 7.6rem;
   width: 7.6rem;
-  min-width: 2rem;
-  min-height: 2rem;
+  min-width: $m-size;
+  min-height: $m-size;
   margin: 2%;
-  border-radius: 8px;
+  border-radius: $round-corner;
 }
 
 .widget__digit-input {
@@ -154,7 +142,7 @@
   width: 100%;
   text-align: center;
   border: solid 2px $main-blue;
-  border-radius: 8px;
+  border-radius: $round-corner;
   font-size: $l-size;
 }
 
@@ -179,44 +167,45 @@
 button {
   min-width: 17.5rem;
   height: 5.2rem;
+  padding: 0 $m-size;
   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
+  font-size: $s-size;
+  font-weight: 700;
+  border-radius: $round-corner;
 }
 
 button:disabled {
   opacity: 0.7;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   opacity: 0.2;
 }
 
 button a {
   color: $white;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: $m-size;
   font-weight: 600;
 }
 
 input {
   border: none;
-  font-size: 16px;
+  font-size: $s-size;
   padding: $s-size;
 }
 
 .widget__asterisk-number {
   width: 45rem;
   height: 8rem;
-  padding: 2rem;
-  margin: 2rem;
+  padding: $m-size;
+  margin: $m-size;
   border: solid 2px $light-blue;
   font-family: 'Montserrat', sans-serif;
-  font-size: 6.4rem;
-  font-weight: 600;
+  font-size: $xxl-size;
+  font-weight: 700;
   line-height: normal;
-  border-radius: 8px;
+  border-radius: $round-corner
 }
 
 @media (min-width: $desktop-breakpoint) {

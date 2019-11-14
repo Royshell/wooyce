@@ -11,7 +11,7 @@ class PINCodePage extends Component {
   };
 
 
-    constructor(props) {
+    constructor(props) { ///with babel 7 and the plugins i've added we don't use constructors
         super(props);
         this.onCleave0Init = this.onCleave0Init.bind(this);
         this.onCleave1Init = this.onCleave1Init.bind(this);
@@ -35,7 +35,7 @@ class PINCodePage extends Component {
         this.setState({cleave3:cleave});
     }
 
-    onDigitAdd = async(e) => {
+    onDigitAdd = async(e) => { //please ident the code
     const currentNode = e.target;
     const digit = currentNode.value;  
     await this.setState({ PIN: this.state.PIN + digit});
@@ -136,7 +136,7 @@ class PINCodePage extends Component {
         </Fragment> 
         }
       </div>
-    )
+    );
   }
 }
 

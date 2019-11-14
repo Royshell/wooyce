@@ -50,7 +50,7 @@ export default class TutorialStepThree extends Component {
           <div className="widget__title">Activate call forward of silenced calls</div>
           <p className="widget__medium-p">This allows Elefend to receive, monitor, and forward back to you any silenced calls from unknown numbers.</p>
           <p className="widget__medium-p">We just sent you text message with the following number</p>
-          <img className="widget__natural-img" src="assets/dial.svg" />
+          <img className="widget__natural-img" src="assets/img/dial.svg" />
           <div className="widget__asterisk-number">
             *67*13221*11#
           </div>
@@ -62,7 +62,7 @@ export default class TutorialStepThree extends Component {
         { this.state.isValidating && <ValidatingWidget/> }
         { this.state.isConfirmed && <Fragment>
             <div className="widget">
-              <img className="widget__natural-img" src="assets/success.png" />
+              <img className="widget__natural-img" src="assets/img/success.png" />
             </div>
             <div className="widget">
               <div className="widget__title">Thank you for joining Elefend Beta!</div>
@@ -76,5 +76,5 @@ export default class TutorialStepThree extends Component {
         </Fragment> }
        </Fragment>
     );
-  };
-};
+  }
+}

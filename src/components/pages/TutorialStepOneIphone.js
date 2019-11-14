@@ -42,8 +42,9 @@ class TutorialStepOneIphone extends Component {
   };
   onConfirmSilenceCallers = () => {
     /*API Call goes here */
+    this.setState({ isValidating: true });
     verifyBlockedNumber().then(()=>{
-      this.setState({ isValidating: true});
+      this.setState({ isValidating: true}); //loader should appear before .then()
       const theClass = this; // no need when using arrow functions RS
       function checkCallStatusOnTimeout() { //old syntax. please use arrow functions RS
         checkCallResult().then(()=>{
@@ -71,7 +72,7 @@ class TutorialStepOneIphone extends Component {
         <div className="widget__title">Silence unknown callers</div>
         { !this.state.isValditaionFailed &&  <div className="widget__medium-p">This is so Elefend knows which calls to analyze, and can then monitor and forward these calls back to you.</div> }
         { this.state.isValditaionFailed &&  <Fragment>
-          <img src={'assets/error.png'} /> 
+          <img src={'assets/img/error.png'} /> 
           <p className="widget__medium-p">Unknown callers are not properly blocked on your phone</p>
           <p className="widget__small-p">If you’re sure that unknown callers are blocked on your phone, confirm below I confirm that unknown numbers are blocked on my phone</p>
           <a className="widget--a" onClick={ this.onConfirmSilenceCallers }>I confirm that I added Elefend as a contact</a>
@@ -79,7 +80,7 @@ class TutorialStepOneIphone extends Component {
         { !this.state.isValditaionFailed && <Fragment>
           { <hr/> }
           <p className="widget__main-p">{ this.getStageText(this.state.currentStage) }</p>
-          <img className="widget__natural-img" src={ `assets/iphone${this.state.currentStage}.png` } /> 
+          <img className="widget__natural-img" src={ `assets/img/iphone${this.state.currentStage}.png` } /> 
         </Fragment> }
         <div className="widget__input-wrapper">
           <button onClick={ this.onNextStage }>{ this.state.isValditaionFailed ? 'Try again' : 'Next' }</button>
@@ -90,7 +91,7 @@ class TutorialStepOneIphone extends Component {
         { this.state.isValidating && <ValidatingWidget /> }     
       </div>
     );
-  };
-};
+  }
+}
 
 export default withRouter(TutorialStepOneIphone);

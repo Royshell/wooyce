@@ -25,7 +25,7 @@ class UnavailablePage extends Component {
       <Fragment>
         <div className="widget flexable-widget">
           <div className="widget--logo--wrapper">
-            <img src="assets/nosupported.png"></img>        
+            <img src="assets/img/nosupported.png"></img>        
           </div>
           <div className="widget__title">Unfortunately Elefend doesn't support your phone carrier</div>
           <button onClick={ this.referToPhoneFormPage }>Try a different phone number</button>
@@ -40,7 +40,7 @@ class UnavailablePage extends Component {
              placeholder="example@mail.com" 
              onChange={ this.onEmailAddressChange }
             />
-            <button className="footer__send-button" onClick={ this.getEmailAddress }><img src="assets/send.png" /></button>
+            <button className="footer__send-button" onClick={ this.getEmailAddress }><img src="assets/img/send.png" /></button>
           </div> }
           { this.state.ismailSent && <div className="widget__sent-confirmation">
             Thanks! We'll be in touch soon.
@@ -49,7 +49,7 @@ class UnavailablePage extends Component {
       </footer>
      </Fragment>
     );
-  };
-};
+  }
+}
 
 export default withRouter(UnavailablePage);

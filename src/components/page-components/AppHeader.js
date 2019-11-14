@@ -5,7 +5,7 @@ export default function AppHeader() {
     <header className="mdl-layout__header">
       <div className="mdl-layout__header-row">
         <span className="mdl-layout-title">
-          <img src="/assets/bg_logo.png"/>
+          <img src="/assets/img/bg_logo.png"/>
         </span>
         <div className="mdl-layout-spacer"></div>
         <nav className="mdl-navigation mdl-layout--large-screen-only">
