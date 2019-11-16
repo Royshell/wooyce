@@ -18,7 +18,7 @@ class HomePage extends Component {
         <button onClick={this.goToApp}>Let's Start</button>
       </div>
     );
-  };
-};
+  }
+}
 
 export default withRouter(HomePage);
