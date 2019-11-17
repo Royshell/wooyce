@@ -12,14 +12,10 @@ export default class TutorialStepThree extends Component {
     isValidating: false,
     isConfirmed: false,
     isFailed: false,
-    isInfoMessageOpened: false,
     PIN: getCallForwardingNumber() //API Doesn't suplly access to PIN
   };
-  sendConfirmationSMS = () => {
+  sendCallForwardingSMS = () => {
     //API request goes here
-  };
-  toggleInfoMessage = () => {
-    this.setState( { isInfoMessageOpened: !this.state.isInfoMessageOpened });
   };
   onCallConfirm = () => {
     this.setState({ isValidating: true });
@@ -44,12 +40,15 @@ export default class TutorialStepThree extends Component {
           setTimeout(checkCallStatusOnTimeout, 10000);
       })
   };
+  componentDidMount = () => {
+    this.sendCallForwardingSMS();
+  };
   render() {
     return (
       <Fragment>
         { !this.state.isConfirmed && !this.state.isFailed && <div className="widget flexable-widget">
           <p className="widget__main-p">Step 3 of 3</p>
-          <div className="widget__title">Activate call forward of silenced calls</div>
+          <div className="widget__title widget__mobile-title">Activate call forward of silenced calls</div>
           <p className="widget__medium-p">This allows Elefend to receive, monitor, and forward back to you any silenced calls from unknown numbers.</p>
           <p className="widget__medium-p">We just sent you text message with the following number</p>
           <img className="widget__natural-img" src="assets/img/dial.svg" />

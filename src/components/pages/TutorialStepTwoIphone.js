@@ -14,6 +14,12 @@ class TutorialStepTwoIphone extends Component {
     isValidating: false,
     isValditaionFailed: false,
   };  
+  onConfirmElefendAdded = () => {
+    this.props.history.push('/tutorial-step-three');  
+  };
+  onSendTextAgain = () => {
+    this.sendSMS();
+  };
   getStageText = (currentStage, element) => {
     let text; 
 
@@ -54,25 +60,26 @@ class TutorialStepTwoIphone extends Component {
   onNextStage = async() => {
 
     if (this.state.currentStage < 3) {
-      if ( this.state.currentStage == 1) { // on step 1 we send an sms message. please verify this logic works
+      if (this.state.currentStage === 1) { // on step 1 we send an sms message. please verify this logic works
         try {
           await this.sendSMS();
         } catch(error) {
           console.log(error);
         }     
+      } else if (this.state.currentStage === 2) {
+        this.addedContact(); 
       }
       this.setState({ currentStage: this.state.currentStage + 1 })
     } else {
-      this.addedContact(); 
+      this.props.history.push('/tutorial-step-three');
     }
   };
-  sendSMS = () => {  // please ident and refactor the code according to mu guidance in previous files. to add loader image add `this.setState({ isValidating: true });`
+  sendSMS = () => {  // please ident and refactor the code according to my guidance in previous files. To add a loader image add `this.setState({ isValidating: true });`
     //API call goes here
     sendElefendNumberAsSMS().then(
         ()=>this.setState({ SMSSent: true }));
   };
   addedContact = () => { // please ident and refactor the code according to mu guidance in previous files
-
   verifyElefendContact().then(() => {
       this.setState({isValidating: true}); //loader should appear before .then()
       const theClass = this;
@@ -98,21 +105,26 @@ class TutorialStepTwoIphone extends Component {
     return (
       <div className="widget">
         <p className="widget__main-p">Step 2 of 3</p>
-        <div className="widget__title">Add Elefend contact to your phone</div>
+        <div className="widget__title widget__mobile-title">Add Elefend contact to your phone</div>
         { !this.state.isValditaionFailed && <p className="widget__medium-p">{ this.getStageText(this.state.currentStage) }</p> }
         { this.state.isValditaionFailed &&  <Fragment>
-          <img src={'assets/img/error.png'} /> 
-          <p className="widget__medium-p">Elefend has not been added as a contact to your phone.</p>
-          <p className="widget__small-p">If you are sure that you added Elefend as a contact, confirm below</p>
-          <a className="widget--a" onClick={ this.onConfirmSilenceCallers }>I confirm that I added Elefend as a contact</a>
+          <img className="widget__natural-img" src="assets/img/error.png" /> 
+          <p className="widget__main-p noto-font">Elefend has not been added as a contact to your phone.</p>
+          <p className="widget__medium-p">If you are sure that you added Elefend as a contact, confirm below</p>
+          <a className="widget--a" onClick={ this.onConfirmElefendAdded }>I confirm I added Elefend as a contact</a>
         </Fragment> }
         { !this.state.isValditaionFailed && <Fragment>
           <img className="widget__natural-img" src={ `assets/img/iphone-2-${this.state.currentStage}.png` } /> 
+          <div className="widget__input-wrapper">
+            <button onClick={ this.onNextStage }>{ this.getStageText(this.state.currentStage, 'button') }</button>
+          </div>  
         </Fragment> }
-        <div className="widget__input-wrapper">
-          <button onClick={ this.onNextStage }>{ this.getStageText(this.state.currentStage, 'button') }</button>
-        </div>    
-        { this.state.isValditaionFailed && <a className="widget--a" onClick={ this.onConfirmSilenceCallers }>I confirm that I added Elefend as a contact</a> }  
+        { this.state.isValditaionFailed && <Fragment>
+          <div className="widget__input-wrapper">
+            <button onClick={ this.onSendTextAgain }>Send text again</button>
+          </div>  
+        </Fragment> }
+        { this.state.isValditaionFailed && <a className="widget--a" href="mailto:info@elefend.com">Contact our customer support team for help</a> }  
         { this.state.isValidating && <ValidatingWidget /> }     
       </div>
     );

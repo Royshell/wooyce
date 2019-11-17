@@ -19,7 +19,7 @@ header.mdl-layout__header .mdl-layout__drawer-button {
 }
 
 header .mdl-layout__header-row {
-  height: 55px;
+  height: 5.5rem;
   padding: 28px 15px 0 20px;
 }
 
@@ -43,8 +43,8 @@ header .mdl-layout__header-row {
 }
 
 @media (min-width: $desktop-breakpoint) {
-  header .mdl-layout__header-row {
-    padding: 10px 15px 0 25px;
+  header .mdl-layout__header-row {  
+    padding: $s-size 13.5rem 0 13.5rem;
   }
 }
 

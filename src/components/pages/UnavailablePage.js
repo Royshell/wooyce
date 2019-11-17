@@ -27,7 +27,7 @@ class UnavailablePage extends Component {
           <div className="widget--logo--wrapper">
             <img src="assets/img/nosupported.png"></img>        
           </div>
-          <div className="widget__title">Unfortunately Elefend doesn't support your phone carrier</div>
+          <div className="widget__title widget__mobile-title  ">Unfortunately Elefend doesn't support your phone carrier</div>
           <button onClick={ this.referToPhoneFormPage }>Try a different phone number</button>
 
       </div>

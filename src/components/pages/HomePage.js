@@ -9,7 +9,7 @@ class HomePage extends Component {
     return (
       <div className="widget">
         <div className="widget--logo--wrapper">
-          <img src="assets/img/logo.png"></img>        
+          <img src="assets/img/logo.png" className="widget__natural-img"></img>        
         </div>
         <div>
           <div className="widget__title">Get started with Elefend (Beta)</div>

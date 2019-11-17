@@ -16,7 +16,7 @@ class TutorialStepOne extends Component {
       <div>
         <div className="widget flexable-widget">
           <p className="widget__main-p">Step 1 of 3</p>
-          <div className="widget__title">Silence unknown callers</div>
+          <div className="widget__title widget__mobile-title">Silence unknown callers</div>
           <p className="widget__medium-p">This is so Elefend knows which calls to analyze, and can then monitor and direct these calls back to you.</p>
           <p className="widget__small-p">Don't worry! You can easily deactivate this in the future.</p>
           <p className="widget__medium-p">What type of phone do you have?</p>

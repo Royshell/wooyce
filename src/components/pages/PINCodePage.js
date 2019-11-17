@@ -90,7 +90,7 @@ class PINCodePage extends Component {
     return (
       <div className="widget">
         <p className="widget__main-p"> Before we get started </p>
-        <div className="widget__title">Verify your phone number</div>
+        <div className="widget__title widget__mobile-title">Verify your phone number</div>
         <p className="widget__medium-p">Enter the 4-digit code (that we just sent to your phone via text message)</p>
         <div className="widget__digit-input-wrapper">
           <div className="widget__digit-container">

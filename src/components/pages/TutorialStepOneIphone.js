@@ -17,6 +17,9 @@ class TutorialStepOneIphone extends Component {
       this.onConfirmSilenceCallers();
     }
   };
+  onConfirmUnknownNumbersAreBlocked = () => {
+    this.props.history.push('/tutorial-step-two-noiphone');
+  };
   getStageText = (currentStage) => {
     let text; 
 
@@ -45,10 +48,10 @@ class TutorialStepOneIphone extends Component {
     this.setState({ isValidating: true });
     verifyBlockedNumber().then(()=>{
       this.setState({ isValidating: true}); //loader should appear before .then()
-      const theClass = this; // no need when using arrow functions RS
-      function checkCallStatusOnTimeout() { //old syntax. please use arrow functions RS
+      const theClass = this; // no need when using arrow functions 
+      function checkCallStatusOnTimeout() { //old syntax. please use arrow functions
         checkCallResult().then(()=>{
-          var lastCallStatus =  getLastCallStatus() // please use 'const' instead of var and add ; RS
+          var lastCallStatus =  getLastCallStatus() // please use 'const' instead of var and add ;
           if ("HUNGUP" === lastCallStatus) {
             theClass.props.history.push('/tutorial-step-two-iphone');
           } else if ("ANSWERED" === lastCallStatus || "INIT" !== lastCallStatus)
@@ -69,13 +72,13 @@ class TutorialStepOneIphone extends Component {
     return (
       <div className="widget">
         <p className="widget__main-p">Step 1 of 3</p>
-        <div className="widget__title">Silence unknown callers</div>
+        <div className="widget__title widget__mobile-title">Silence unknown callers</div>
         { !this.state.isValditaionFailed &&  <div className="widget__medium-p">This is so Elefend knows which calls to analyze, and can then monitor and forward these calls back to you.</div> }
         { this.state.isValditaionFailed &&  <Fragment>
-          <img src={'assets/img/error.png'} /> 
-          <p className="widget__medium-p">Unknown callers are not properly blocked on your phone</p>
-          <p className="widget__small-p">If you’re sure that unknown callers are blocked on your phone, confirm below I confirm that unknown numbers are blocked on my phone</p>
-          <a className="widget--a" onClick={ this.onConfirmSilenceCallers }>I confirm that I added Elefend as a contact</a>
+          <img className="widget__natural-img" src="assets/img/error.png" /> 
+          <p className="widget__main-p noto-font">Unknown callers are not properly blocked on your phone</p>
+          <p className="widget__small-p">If you’re sure that unknown callers are blocked on your phone, confirm below </p>
+          <a className="widget--a" onClick={ this.onConfirmUnknownNumbersAreBlocked  }>I confirm that unknown numbers are blocked on my phone</a>
         </Fragment> }
         { !this.state.isValditaionFailed && <Fragment>
           { <hr/> }
@@ -86,7 +89,7 @@ class TutorialStepOneIphone extends Component {
           <button onClick={ this.onNextStage }>{ this.state.isValditaionFailed ? 'Try again' : 'Next' }</button>
         </div>    
         {
-          this.state.isValditaionFailed && <a className="widget--a" onClick={ this.onConfirmSilenceCallers }>I confirm that I added Elefend as a contact</a>
+          this.state.isValditaionFailed && <a className="widget--a" href="mailto:info@elefend.com">Contact our customer support team for help</a>
         }  
         { this.state.isValidating && <ValidatingWidget /> }     
       </div>

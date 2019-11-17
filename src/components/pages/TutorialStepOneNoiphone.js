@@ -8,6 +8,9 @@ class TutorialStepOneNoiphone extends Component {
     isValditaionFailed: false,
     isValidating: false,
   };
+  onConfirmUnknownNumbersAreBlocked = () => {
+    this.props.history.push('/tutorial-step-two-noiphone');
+  };
   onConfirmDownload = () => {
     /*API Call goes here */
     this.setState({ isValidating: true });
@@ -36,7 +39,7 @@ class TutorialStepOneNoiphone extends Component {
     return (
       <div className="widget">
         <p className="widget__main-p">Step 1 of 3</p>
-        <div className="widget__title"> { !this.state.isValditaionFailed ? 'Download the Elefend app' : 'Silence unknown callers' }</div>
+        <div className="widget__title widget__mobile-title"> { !this.state.isValditaionFailed ? 'Download the Elefend app' : 'Silence unknown callers' }</div>
         { !this.state.isValditaionFailed && <Fragment>
           <p className="widget__medium-p">This app will automatically silence unknown calls.</p>
           <img className="widget__natural-img" src="assets/img/android-app.png"/> 
@@ -47,13 +50,13 @@ class TutorialStepOneNoiphone extends Component {
         </Fragment>}
         { this.state.isValditaionFailed &&  <Fragment>
           <img src={'assets/img/error.png'} /> 
-          <p className="widget__medium-p">Unknown callers are not properly blocked on your phone</p>
-          <p className="widget__small-p">If you’re sure that unknown callers are blocked on your phone, confirm below I confirm that unknown numbers are blocked on my phone</p>
-          <a className="widget--a" onClick={ this.onConfirmDownload }>I confirm that I added Elefend as a contact</a>
+          <p className="widget__main-p noto-font">Unknown callers are not properly blocked on your phone</p>
+          <p className="widget__small-p">If you’re sure that unknown callers are blocked on your phone, confirm below</p>
+          <a className="widget--a" onClick={ this.onConfirmUnknownNumbersAreBlocked }>I confirm that unknown numbers are blocked on my phone</a>
           <div className="widget__input-wrapper">
             <button onClick={ this.onConfirmDownload }>Try again</button>
           </div> 
-          <a className="widget--a" onClick={ this.onConfirmDownload }>I confirm that I added Elefend as a contact</a>
+          <a className="widget--a" href="mailto:info@elefend.com">Contact our customer support team for help</a>
         </Fragment> }
         { this.state.isValidating && <ValidatingWidget /> }
       </div>

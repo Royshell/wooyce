@@ -16,27 +16,27 @@
 
 .widget .widget__title {
   font-size: $xl-size;
-  margin: $l-size;
+  margin: $s-size;
   font-family: 'Noto Serif', serif; 
   line-height: normal;
 }
 
 .widget__main-p {
-  margin: $l-size;
-  font-family: 'Montserrat', sans-serif;
+  margin: $xxs-size;
+  font-family: 'Montserrat', sans-serif; 
   line-height: 1.67;
   font-size: $m-size;
   font-weight: 700;
 }
 
 .widget__medium-p {
-  font-size: $m-size;
+  font-size: $s-size;
   line-height: 1.78;
   font-weight: 700;
 }
 
 .widget__small-p {
-  margin: $m-size;
+  margin: $xxs-size;
   font-family: 'Montserrat', sans-serif;
   font-size: $xs-size;
   font-weight: 700;
@@ -58,7 +58,7 @@
 
 .widget__icons-wrapper {
   display: flex;
-  margin: $l-size;
+  margin: $xxs-size;
 }
 
 .widget__input-container {
@@ -198,12 +198,6 @@ input {
  margin: $l-size 0;
 }
 
-@media (min-width: $desktop-breakpoint) {
-  button {
-    font-size: $m-size;
-  }
-}
-
 @media (min-width: $mobile-breakpoint) {
   .widget__main-p { 
     font-size: $l-size;
@@ -223,5 +217,17 @@ input {
 
   .widget__flag {
     padding: $m-size;
+  } 
+
+  .widget__small-p, .widget__medium-p {
+    margin: $m-size;
+  }
+  
+  .widget .widget__title {
+    margin: $l-size;
+  }  
+
+  .widget__icons-wrapper {
+    margin: $l-size;
   }
 }
