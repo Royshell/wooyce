@@ -62,20 +62,22 @@ class PhoneFormPage extends Component {
           return (
             <div className="widget">
               <p className="widget__main-p"> Before we get started </p>
-              <div className="widget__title">Verify your phone number</div>
+              <div className="widget__title widget__mobile-title">Verify your phone number</div>
               <p className="widget__medium-p">We need to verify that Elefend works with your carrier</p>
-              <div className="widget__input-wrapper">
+              <div className="widget__input-wrapper widget__mobile-margin">
                 <div className="widget__input-container">
                   <span className="widget__flag">
-                  🇺🇸 +1
+                   <img src="assets/img/usa.png" /> +1
                   </span>
                   <Cleave
                     placeholder="631-204-1535"
                     onChange={ this.onPhoneNumberInputChange }
                   />
                 </div>
-              </div>    
-              <button onClick={ this.getPhoneNumber} >Verify</button>
+              </div>   
+              <div className="widget__input-wrapper widget__mobile-margin">
+                <button onClick={ this.getPhoneNumber} >Verify</button>
+              </div> 
               <p className="widget__small-p">By clicking VERIFY, I understand and agree to Elefend's <a className="widget--a"> terms and conditions </a> and <a className="widget--a" > privacy policy </a></p>
             </div>
             )

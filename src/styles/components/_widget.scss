@@ -1,7 +1,7 @@
 .widget {
   text-align: center;
   color: $main-blue;
-  margin: $xl-size;
+  margin: $m-size;
 }
 
 .flexable-widget {
@@ -14,7 +14,7 @@
   max-width: 50rem;
 } 
 
-.widget__title {
+.widget .widget__title {
   font-size: $xl-size;
   margin: $l-size;
   font-family: 'Noto Serif', serif; 
@@ -25,7 +25,7 @@
   margin: $l-size;
   font-family: 'Montserrat', sans-serif;
   line-height: 1.67;
-  font-size: $l-size;
+  font-size: $m-size;
   font-weight: 700;
 }
 
@@ -67,6 +67,7 @@
   border: solid 2px $light-blue;
   border-radius: $round-corner;
   background-color: $white;
+  width: calc(100% - 4px);
 }
 
 .widget__sent-confirmation {
@@ -82,9 +83,15 @@
 }
 
 .widget__flag {
-  padding: $m-size;
+  font-family: "EmojiOne Color", sans-serif;
+  padding: $xxs-size;
   color: $dark-grey;
-  font-size: $s-size;
+  font-size: $s-size; 
+}
+
+.widget .widget__flag img {
+  width: 25%;
+  height: 25%;
 }
 
 .widget__flag ~ input {
@@ -183,8 +190,38 @@ input {
   border-radius: $round-corner
 }
 
+.widget .widget__mobile-title {
+  font-size: $l-size;
+}
+
+.widget .widget__mobile-margin {
+ margin: $l-size 0;
+}
+
 @media (min-width: $desktop-breakpoint) {
   button {
     font-size: $m-size;
+  }
+}
+
+@media (min-width: $mobile-breakpoint) {
+  .widget__main-p { 
+    font-size: $l-size;
+  }  
+
+  .widget {
+    margin: $xl-size;
+  }
+
+  .widget .widget__title {
+    font-size: $xl-size;
+  }
+
+  .widget__input-container { 
+    width: auto;
+  }
+
+  .widget__flag {
+    padding: $m-size;
   }
 }

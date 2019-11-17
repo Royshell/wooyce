@@ -15,6 +15,7 @@ button {
   border: none;
   color: $white;
   cursor: pointer;
+  width: 100%;
   min-width: 17.5rem;
   height: 5.2rem;
   padding: 0 $m-size;
@@ -76,4 +77,31 @@ label {
 
 i.material-icons {
   color: $main-blue;
+}
+
+.not-on-mobile {
+  display: none;
+}
+
+.mobile-logo {
+  width: 32px;
+  height: 30px;
+}
+
+
+@media (min-width: $desktop-breakpoint) {
+
+}
+
+@media (min-width: $mobile-breakpoint) {
+  .not-on-mobile {
+    display: block;
+  }
+  .mobile-logo {
+    display: none;
+  }
+
+  button {
+    width: auto;
+  }
 }

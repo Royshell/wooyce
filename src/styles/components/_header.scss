@@ -18,6 +18,11 @@ header.mdl-layout__header .mdl-layout__drawer-button {
   position: static;
 }
 
+header .mdl-layout__header-row {
+  height: 55px;
+  padding: 28px 15px 0 20px;
+}
+
 @media (min-width: $desktop-breakpoint) {
   header.mdl-layout__header {
     flex-direction: column;
@@ -31,4 +36,20 @@ header.mdl-layout__header .mdl-layout__drawer-button {
   header.mdl-layout__header .mdl-layout__drawer-button {
     position: absolute;
   }
+
+  header.mobile-logo {
+    display: none;
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  header .mdl-layout__header-row {
+    padding: 10px 15px 0 25px;
+  }
+}
+
+@media (min-width: $mobile-breakpoint) {
+  header.mobile-logo {
+    display: none;
+  } 
 }
