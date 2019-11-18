@@ -9,6 +9,7 @@
     "start": "node server/server.js",
     "serve": "live-server public/",
     "build": "webpack",
+    "build-prod": "webpack --mode=production",
     "dev-server": "webpack-dev-server --open",
     "test": "jest",
     "test-watch": "jest --watchAll"
