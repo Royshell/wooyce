@@ -66,6 +66,10 @@ class PhoneFormPage extends Component {
               <p className="widget__medium-p">We need to verify that Elefend works with your carrier</p>
               <div className="widget__input-wrapper widget__mobile-margin">
                 <div className="widget__input-container">
+                  <div className="widget__flag">
+                    <img src="assets/img/usa.png" />
+                    +1
+                  </div>
                   <Cleave
                     placeholder="631-204-1535"
                     onChange={ this.onPhoneNumberInputChange }

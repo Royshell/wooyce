@@ -96,6 +96,7 @@
 
 .widget__flag ~ input {
   border-left: solid 2px $light-blue;
+  border-radius: $round-corner;
 }
 
 .widget_os-block {
