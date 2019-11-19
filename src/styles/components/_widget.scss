@@ -81,7 +81,7 @@
   background-color: $msg-bg-color;
   font-size: $xs-size;
 }
-
+~
 .widget__flag {
   padding: $xxs-size;
   color: $dark-grey;
@@ -95,7 +95,8 @@
 
 .widget__flag ~ input {
   border-left: solid 2px $light-blue;
-  border-radius: $round-corner;
+  border-top-right-radius: $round-corner;
+  border-bottom-right-radius: $round-corner;
 }
 
 .widget_os-block {

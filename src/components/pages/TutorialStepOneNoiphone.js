@@ -34,7 +34,7 @@ class TutorialStepOneNoiphone extends Component {
 
       setTimeout(checkCallStatusOnTimeout,10000);
     });
-  }
+  };
   render() {
     return (
       <div className="widget">

@@ -14,34 +14,28 @@ export default class TutorialStepThree extends Component {
     isFailed: false,
     PIN: getCallForwardingNumber() //API Doesn't suplly access to PIN
   };
-  sendCallForwardingSMS = () => {
-    //API request goes here
-  };
   onCallConfirm = () => {
     this.setState({ isValidating: true });
     
-      verifyCallForwarding().then(()=> {
-          this.setState({isValidating: true});
-          const theClass = this; //once again, use arrow functions RS
+    verifyCallForwarding().then(()=> {
+        this.setState({isValidating: true});
+        const theClass = this; //once again, use arrow functions RS
 
-          function checkCallStatusOnTimeout() {
-              checkForwardingResult().then(() => {
-                  var lastFwdStatus = checkForwarding() //again - use const and add a ';'
-                  if ("SUCCESS" === lastFwdStatus) {
-                      theClass.setState({isConfirmed:true})
-                  } else if ("FAILED" === lastFwdStatus || "INIT" !== lastFwdStatus) {
-                      theClass.setState({isFailed: true});
-                      theClass.setState({isValidating: false});
-                  } else {
-                      setTimeout(checkCallStatusOnTimeout, 10000);
-                  }
-              })
-          }
-          setTimeout(checkCallStatusOnTimeout, 10000);
-      })
-  };
-  componentDidMount = () => {
-    this.sendCallForwardingSMS();
+        function checkCallStatusOnTimeout() {
+            checkForwardingResult().then(() => {
+                var lastFwdStatus = checkForwarding() //again - use const and add a ';'
+                if ("SUCCESS" === lastFwdStatus) {
+                    theClass.setState({isConfirmed:true})
+                } else if ("FAILED" === lastFwdStatus || "INIT" !== lastFwdStatus) {
+                    theClass.setState({isFailed: true});
+                    theClass.setState({isValidating: false});
+                } else {
+                    setTimeout(checkCallStatusOnTimeout, 10000);
+                }
+            })
+        }
+        setTimeout(checkCallStatusOnTimeout, 10000);
+    })
   };
   render() {
     return (

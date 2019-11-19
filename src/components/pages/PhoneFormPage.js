@@ -48,61 +48,71 @@ class PhoneFormPage extends Component {
             console.log("Error:"+reason); // Avoid using " " for strings. Use ' or `
         });
     }
-
+ 
   componentDidMount = async() => {
     await login();
+
     if(checkLogin()) {
         this.setState({login_status:'OK'});
     } else {
         this.setState({login_status:'Failed'})
     }
+    const phoneInput = document.querySelector('input');
+    phoneInput.focus();
   };
-    render() {
-        if(this.state.login_status=='OK') { // please use === instead of == also, there = should be a space before and after every logical operator. Ident the code
-          return (
-            <div className="widget">
-              <p className="widget__main-p"> Before we get started </p>
-              <div className="widget__title widget__mobile-title">Verify your phone number</div>
-              <p className="widget__medium-p">We need to verify that Elefend works with your carrier</p>
-              <div className="widget__input-wrapper widget__mobile-margin">
-                <div className="widget__input-container">
-                  <div className="widget__flag">
-                    <img src="assets/img/usa.png" />
-                    +1
-                  </div>
-                  <Cleave
-                    placeholder="631-204-1535"
-                    onChange={ this.onPhoneNumberInputChange }
-                  />
-                </div>
-              </div>   
-              <div className="widget__input-wrapper widget__mobile-margin">
-                <button onClick={ this.getPhoneNumber} >Verify</button>
-              </div> 
-              <p className="widget__small-p">By clicking VERIFY, I understand and agree to Elefend's <a className="widget--a"> terms and conditions </a> and <a className="widget--a" > privacy policy </a></p>
-            </div>
-            )
-        }
-
-        if(this.state.login_status=='Trying') {
-            return (
-              <ValidatingWidget message={ 'Loading...' }/>
-            );
-        }
-        else { 
-            return ( 
-            <div className="widget">
-              <div className="widget__title">Connection to Server Failed</div>
-              <div className="widget--logo--wrapper">
-                <img className="widget__natural-img" src="assets/img/error.png"></img>        
-              </div>
-              <div className="widget__input-wrapper">
-                <button onClick={ this.onLoad }>Try again</button>
-              </div>
-            </div>
-          )
-        }
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      this.getPhoneNumber();
     }
+  };
+  render() {
+      if(this.state.login_status=='OK') { // please use === instead of == also, there = should be a space before and after every logical operator. Ident the code
+        return (
+          <div className="widget">
+            <p className="widget__main-p"> Before we get started </p>
+            <div className="widget__title widget__mobile-title">Verify your phone number</div>
+            <p className="widget__medium-p">We need to verify that Elefend works with your carrier</p>
+            <div className="widget__input-wrapper widget__mobile-margin">
+              <div className="widget__input-container">
+                <div className="widget__flag">
+                  <img src="assets/img/usa.png" />
+                  +1
+                </div>
+                <Cleave
+                  tabIndex="0"
+                  placeholder="631-204-1535"
+                  onChange={ this.onPhoneNumberInputChange }
+                  onKeyDown={ this.handleKeyDown }
+                />
+              </div>
+            </div>   
+            <div className="widget__input-wrapper widget__mobile-margin">
+              <button onClick={ this.getPhoneNumber} >Verify</button>
+            </div> 
+            <p className="widget__small-p">By clicking VERIFY, I understand and agree to Elefend's <a className="widget--a"> terms and conditions </a> and <a className="widget--a" > privacy policy </a></p>
+          </div>
+          )
+      }
+
+      if(this.state.login_status=='Trying') {
+          return (
+            <ValidatingWidget message={ 'Loading...' }/>
+          );
+      }
+      else { 
+          return ( 
+          <div className="widget">
+            <div className="widget__title">Connection to Server Failed</div>
+            <div className="widget--logo--wrapper">
+              <img className="widget__natural-img" src="assets/img/error.png"></img>        
+            </div>
+            <div className="widget__input-wrapper">
+              <button onClick={ this.onLoad }>Try again</button>
+            </div>
+          </div>
+        )
+      }
+  }
 }
 
 export default withRouter(PhoneFormPage);
