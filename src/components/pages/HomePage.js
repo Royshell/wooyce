@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { ReactMic } from 'react-mic';
 
 class HomePage extends Component {
-  goToApp = () => {
-    this.props.history.push('/phone-form');
+
+  state = {
+    record: false
+  };
+  startRecording = () => {
+    this.setState({
+      record: true
+    });
+  }
+  stopRecording = () => {
+    this.setState({
+      record: false
+    });
+  };
+  onStop = (recordedBlob) => {
+    console.log('recordedBlob is: ', recordedBlob);
   };
   render() {
     return (
       <div className="widget">
-        <div className="widget--logo--wrapper">
-          <img className="widget__natural-img" src="assets/img/logo.png" />       
-        </div>
-        <div>
-          <div className="widget__title">Get started with Elefend (Beta)</div>
-          <p className="widget__main-p">Elefend identifies scams by monitoring and analyzing calls from { <br className="not-on-mobile"/> } unknown callers and alerting you if there's a risk while you're { <br className="not-on-mobile"/> }   on the call</p>
-        </div>
-        <button onClick={this.goToApp}>Let's Start</button>
+      <ReactMic
+        record={this.state.record}
+        className="sound-wave"
+        onStop={this.onStop}
+        onData={this.onData}
+        strokeColor="#000000"
+        backgroundColor="#FF4081" />
+      <button onTouchTap={this.startRecording} type="button">Start</button>
+      <button onTouchTap={this.stopRecording} type="button">Stop</button>
       </div>
     );
   }
