@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { ReactMic } from 'react-mic';
+import { login, sendFile, getGraphData } from '../../services/WooyceAPI';
 
 class HomePage extends Component {
 
@@ -17,9 +18,15 @@ class HomePage extends Component {
       record: false
     });
   };
-  onStop = (recordedBlob) => {
+  onStop = async(recordedBlob) => {
     console.log('recordedBlob is: ', recordedBlob);
+    const wavFile = new File([recordedBlob.blob], 'record.wav', {type: 'audio/wav; codecs=MS_PCM', lastModified: Date.now()});
+    await sendFile(wavFile);
+    await getGraphData();
   };
+  componentDidMount = () => {
+    login();
+  }
   render() {
     return (
       <div className="widget">
@@ -30,8 +37,8 @@ class HomePage extends Component {
         onData={this.onData}
         strokeColor="#000000"
         backgroundColor="#FF4081" />
-      <button onTouchTap={this.startRecording} type="button">Start</button>
-      <button onTouchTap={this.stopRecording} type="button">Stop</button>
+      <button onClick={this.startRecording} type="button">Start</button>
+      <button onClick={this.stopRecording} type="button">Stop</button>
       </div>
     );
   }

@@ -3,8 +3,8 @@ let token;
 
 const login = async() => {
   const body = {
-    email: 'aare@bb.cc',
-    password: 'fdsftrhgtrh'
+    "email": "aaeere@bb.cc",
+    "password": "fdsftrhgtrh"
   };
   try {
     console.log('trying...');
@@ -24,11 +24,6 @@ const login = async() => {
   }
 };
 const sendFile = async(wavFile) => {
-
-  var file = new File(["foo"], "foo.txt", {
-    type: "text/plain",
-  }); 
-
   
   const  formdata = new FormData();
   //formdata.append('test', file);
@@ -65,7 +60,7 @@ const getGraphData = async() => {
         }
     });
     const data = await response.json();
-
+    console.log(data);
     return data;
   } catch(err) {
     console.log(err);
