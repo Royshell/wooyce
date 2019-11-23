@@ -76,7 +76,7 @@ class PhoneFormPage extends Component {
               <div className="widget__input-container">
                 <div className="widget__flag">
                   <img src="assets/img/usa.png" />
-                  +1
+                  <span> +1 </span>
                 </div>
                 <Cleave
                   tabIndex="0"

@@ -2,14 +2,16 @@ import React, { Fragment, Component } from 'react';
 import Cleave from 'cleave.js/react';
 import { withRouter } from 'react-router';
 import {checkVerified, registerPhoneNumber, verifyPhoneNumber} from '../../services/ElefendAPI';
+import ValidatingWidget from '../page-components/ValidatingWidget';
 
 let allElements;
 
 class PINCodePage extends Component {
   state = {
-    PIN: '',
+    PIN: 'xxxx',
     isChecked: false,
-    isValid: false,
+    isValid: undefined,
+    isValidating: false
   };
 
 
@@ -37,56 +39,64 @@ class PINCodePage extends Component {
     //     this.setState({cleave3:cleave});
     // }
 
-    onDigitAdd = async(e) => { //please ident the code
+  onDigitAdd = async(e) => { //please ident the code
+
     const currentNode = e.target;
     const digit = currentNode.value;  
-    await this.setState({ PIN: this.state.PIN + digit});
+    
     allElements = document.querySelectorAll('input');
     const currentIndex = [...allElements].findIndex(el => currentNode.isEqualNode(el)); 
 
-    if (currentIndex < 3 && !isNaN(digit - parseFloat(digit))) {
-      allElements[currentIndex + 1].focus();
+    if (/^\d+$/.test(digit)) {
+      let PIN = this.state.PIN;
+      PIN = PIN.replaceAt(currentIndex, digit);
+
+      await this.setState({ PIN });
+
+      if (!this.state.isChecked ) {
+        if (currentIndex < 3 && !isNaN(digit - parseFloat(digit))) {
+          allElements[currentIndex + 1].focus();
+        } 
+        if (this.state.PIN.length === 4 && !this.state.PIN.includes('x')) {
+          this.setState ({ isChecked: true });
+          this.checkPIN(this.state.PIN);
+          allElements[currentIndex].blur();
+        }
+      } else if (!this.state.PIN.includes('x')) {
+        this.checkPIN(this.state.PIN);
+      }
     } 
-    if (this.state.PIN.length === 4) {
-      this.checkPIN(this.state.PIN);
-    }
   };
 
   checkPinFromButton = ()=> {
-      this.checkPIN(this.state.PIN);
+    this.checkPIN(this.state.PIN);
   };
 
   checkPIN = (PINCode) => {
+    this.setState({ isValidating: true });
     verifyPhoneNumber(PINCode).then(() => {
       if(checkVerified()) {
-        this.setState({isChecked: true});
-        this.setState({PIN: ''});
         this.setState({isValid: true});
         this.props.history.push('/tutorial-step-one');
       } else {
-          //allElements = document.querySelectorAll('input');
-          console.log("Last element:"+allElements[3].value);
-          [...allElements].map(el => el.value = '');
-          allElements[0].focus();
-          this.setState({PIN: ''});
-          this.state.cleave0.setRawValue("")
-          this.state.cleave1.setRawValue("")
-          this.state.cleave2.setRawValue("")
-          this.state.cleave3.setRawValue("")
+        this.setState({ isValidating: false });
+        this.setState({ isValid: false });
       }
     }).catch(() => {
-      //const allElements = document.querySelectorAll('input');
-      [...allElements].map(el => el.value = '');
-      allElements[0].focus();
-      this.props.history.push('/unavailable');
-      
+      this.setState({ isValidating: false });
+      this.setState({ isValid: false });
       /* NOTICE - this functionality forwards the client towards unavailable page.
       API should also detect the case where the PIN is inserted but not correct */
     });
   }; 
   resendPIN = async () => {
      /*I've assumed that resgisterPhoneNumber() resend the PIN code it not, please change*/
+    this.setState({ isValidating: true });
+    [...allElements].map( el => el.value = '');
     await registerPhoneNumber(localStorage.getItem("phonenumber"));
+    this.setState({ PIN: 'xxxx' });
+    this.setState({ isChecked: false });
+    this.setState({ isValidating: false });
   }
   componentDidMount = () =>{
     allElements = document.querySelectorAll('input');
@@ -100,47 +110,57 @@ class PINCodePage extends Component {
         <p className="widget__medium-p">Enter the 4-digit code (that we just sent to your phone via text message)</p>
         <div className="widget__digit-input-wrapper">
           <div className="widget__digit-container">
+            <input 
+              type="text"
+              tabIndex="0"
+              maxLength="1" 
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid !== undefined && !this.state.isValid ? 'widget__input-not-valid' : '') } 
+              onChange={ this.onDigitAdd }
+            />         
+          { /*
             <Cleave
               tabIndex="0"
-              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid !== undefined && !this.state.isValid ? 'widget__input-not-valid' : '') }
               options={ { numericOnly: true, blocks: [1]} }
               onChange={ this.onDigitAdd }
               //onInit={ this.onCleave0Init }
             />
+          */}
           </div>
           <div className="widget__digit-container">
-            <Cleave
+            <input 
+              type="text"
+              maxLength="1" 
               tabIndex="1"
-              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
-              options={ {numericOnly: true, blocks: [1]} }
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid !== undefined && !this.state.isValid ? 'widget__input-not-valid' : '') } 
               onChange={ this.onDigitAdd }
-              //onInit={ this.onCleave1Init }
             />
           </div>
           <div className="widget__digit-container">
-            <Cleave
+            <input 
+              type="text"
+              maxLength="1" 
               tabIndex="2"
-              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
-              options={ {numericOnly: true, blocks: [1]} }
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid !== undefined && !this.state.isValid ? 'widget__input-not-valid' : '') } 
               onChange={ this.onDigitAdd }
-              //onInit={ this.onCleave2Init }
             />
           </div>
           <div className="widget__digit-container">
-            <Cleave
+            <input 
+              type="text"
+              maxLength="1" 
               tabIndex="3"
-              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid ? 'widget__input-valid' : '') }
-              options={ {numericOnly: true, blocks: [1]} }
+              className={ 'widget__digit-input ' + (this.state.isChecked && this.state.isValid !== undefined && !this.state.isValid ? 'widget__input-not-valid' : '') } 
               onChange={ this.onDigitAdd }
-              //onInit={ this.onCleave3Init }
             />
           </div>
         </div>
-        { !this.state.isChecked && !this.state.isValid && 
-        <Fragment>
+        { this.state.isValid !== undefined && !this.state.isValid && <p className="widget__small-p error">Invalid code, try again</p> }
+        <div className="widget__input-wrapper">
           <button onClick={ this.checkPinFromButton }>Verify</button>
-        </Fragment> 
-        }
+        </div>
+        <a className="widget--a" onClick={ this.resendPIN }>Resend 4-digit code</a>
+        { this.state.isValidating && <ValidatingWidget /> }     
       </div>
     );
   }

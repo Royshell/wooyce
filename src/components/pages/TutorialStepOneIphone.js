@@ -18,7 +18,7 @@ class TutorialStepOneIphone extends Component {
     }
   };
   onConfirmUnknownNumbersAreBlocked = () => {
-    this.props.history.push('/tutorial-step-two-noiphone');
+    this.props.history.push('/tutorial-step-two-iphone');
   };
   getStageText = (currentStage) => {
     let text; 

@@ -151,11 +151,16 @@
   text-align: center;
   border: solid 2px $main-blue;
   border-radius: $round-corner;
-  font-size: $l-size;
+  font-size: $xl-size;
+  font-weight: 700;
 }
 
 .widget__digit-input:not([value]), .widget__digit-input[value=""] {
   border: solid 2px $light-blue;
+}
+
+.widget__input-not-valid {
+  border: solid 2px $error-red;
 }
 
 .widget__digit-input:focus {
@@ -179,7 +184,6 @@ input {
 }
 
 .widget__asterisk-number {
-  width: 45rem;
   height: 8rem;
   padding: $m-size;
   margin: $m-size;
@@ -218,8 +222,13 @@ input {
 
   .widget__flag {
     padding: $m-size;
+
   } 
 
+  .widget__flag span {
+    font-size: $s-size;
+    
+  } 
   .widget__small-p, .widget__medium-p {
     margin: $m-size;
   }

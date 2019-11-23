@@ -4,6 +4,7 @@ let sessionId; //seems to be not in use
 let savedPhoneNumber;
 let savedDidNumber;
 let my_client_id;
+let callForwardingNumber;
 let api_states = {
     logged_in :false,
     registered : false,
@@ -210,7 +211,7 @@ const sendForwardingNumberAsSMS = async() => {
     console.log("Result from forwarding:"+results); //avoid using console.log not in an error
     savedDidNumber = results["did_line"];
     console.log("DID number:"+savedDidNumber);
-    if(result!=-1) {
+    if(results!==-1) {
       api_states.sent_contact_number = true;
     }
   } catch(err) {
@@ -396,7 +397,9 @@ const verifyCallForwarding = async() => {
     console.log(err);
   }
 };
-
+String.prototype.replaceAt=function(index, replacement) {
+  return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+}
 
 
 
