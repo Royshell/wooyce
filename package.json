@@ -36,7 +36,6 @@
     "normalize.css": "^8.0.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-mic": "^12.4.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "run": "^1.4.0",

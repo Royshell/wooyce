@@ -3,7 +3,7 @@ let token;
 
 const login = async() => {
   const body = {
-    "email": "aaeere@bb.cc",
+    "email": "aa@bb.cc",
     "password": "fdsftrhgtrh"
   };
   try {
