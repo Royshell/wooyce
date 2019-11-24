@@ -1,4 +1,4 @@
-# Elefend front-end web app
+# Wooyce front-end web app
 
 Run `npm i` to install
 
