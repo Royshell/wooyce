@@ -69,31 +69,5 @@ const getGraphData = async() => {
 };
 
 
-/* tests */
-function upload(wavFile) {
-  let formData = new FormData();
-
-//formdata.set('audio',  wavFile, wavFile.name);
-formData.append('audio',wavFile);
-
-  var req = new XMLHttpRequest();
-  
-  req.open("POST", 'http://localhost:3000/harmonium');
-  req.setRequestHeader('Authorization', `Bearer ${token}`);
-  req.onload = function(event) { alert(event.target.responseText); };
-  req.send(formData);
-}
-
-const fake = async() => {
-
-  try {
-    const response = await fetch('http://dummy.restapiexample.com/api/v1/employee/1');
-    const t = await response.json();
-    console.log(t);
-  }  catch(err) {
-    console.log(err);
-  }
-};
-
 
 export  { login, signUp, fake, sendFile, upload, getGraphData };
