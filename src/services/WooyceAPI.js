@@ -3,9 +3,9 @@ let token;
 
 const login = async() => {
   const body = {
-    "email": "aa@bb.cc",
-    "password": "fdsftrhgtrh"
-  };
+    "email": "yeye@mm.ll",
+    "password": "testtest"
+  }
   try {
     console.log('trying...');
     const response = await fetch('http://localhost:3000/users/login', {
@@ -60,6 +60,7 @@ const getGraphData = async() => {
         }
     });
     const data = await response.json();
+    console.log('fetched data');
     console.log(data);
     return data;
   } catch(err) {
