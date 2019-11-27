@@ -11,7 +11,8 @@ class HomePage extends Component {
   state = {
     record: false,
     graphData: [],
-    options: {}
+    options: {},
+    isLoading: false
   };
   startRecording = () => {
     this.setState({
@@ -27,7 +28,9 @@ class HomePage extends Component {
     const wavFile = new File([recordedBlob.blob], 'record.wav', {type: 'audio/wav; codecs=MS_PCM', lastModified: Date.now()});
 
     try {
+      this.setState({ isLoading: true });
       await sendFile(wavFile);    
+      this.setState({ isLoading: false });
       const grpahDatas = await getGraphData();  
 
       const graphInfo = grpahDatas[grpahDatas.length - 1].harmony;
@@ -40,6 +43,7 @@ class HomePage extends Component {
       this.setState({ options: this.getOptions(sortedGraph)});
       
     } catch(err) {
+      this.setState({ isLoading: false });
       console.log(err);
     }
   };
@@ -82,6 +86,8 @@ class HomePage extends Component {
         <button onClick={this.startRecording} type="button"></button>
         <button onClick={this.stopRecording} type="button"></button>
       </div>  
+
+      { this.state.isLoading && <div className="lds-ring"><div></div></div> }
       { this.state.options && <CanvasJSChart options={this.state.options} /> }
           
       </div>
