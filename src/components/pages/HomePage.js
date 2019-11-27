@@ -77,9 +77,11 @@ class HomePage extends Component {
         onStop={this.onStop}
         onData={this.onData}
         strokeColor="#ffffff"
-        backgroundColor="#FF4081" />
-      <button onClick={this.startRecording} type="button">Start</button>
-      <button onClick={this.stopRecording} type="button">Stop</button>
+        backgroundColor="#3F51B5" />
+      <div className="btn-wrapper">
+        <button onClick={this.startRecording} type="button"></button>
+        <button onClick={this.stopRecording} type="button"></button>
+      </div>  
       { this.state.options && <CanvasJSChart options={this.state.options} /> }
           
       </div>
