@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-button {
+.btn-wrapper button {
   margin: 4rem;
   border-radius: 50%;
   height: 4.5rem;
@@ -17,7 +17,7 @@ button {
   cursor: pointer;
 }
 
-button:nth-child(2){
+.btn-wrapper button:nth-child(2){
   background: url(/assets/img/stop.svg) lavender center no-repeat;
   background-size: 2.5rem;
 }
@@ -27,7 +27,41 @@ button:nth-child(2){
   justify-content: center;
 }
 
+.btn {
+  border: 1px solid #fff;
+  background: #3F51B5;
+  color: #fff;
+  padding: 2.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 2rem;
+}
+table, td, th {
+  border: none;
+}
 
+td {
+  width: 5rem;
+  height: 5rem;
+}
+
+.mini-stop, .mini-mic {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  margin: 0.5rem;
+  background: url(/assets/img/mic.svg) lavender center no-repeat;
+  background-size: 1rem;
+  cursor: pointer;
+}
+.mini-stop {
+  background: url(/assets/img/stop.svg) lavender center no-repeat;
+  background-size: 1rem;
+}
+.radio-wrapper {
+  text-align: center;
+}
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -54,6 +88,12 @@ button:nth-child(2){
 }
 .lds-ring div:nth-child(3) {
   animation-delay: -0.15s;
+}
+tr td:nth-child(2) {
+  width: 25rem;
+}
+tr td:last-child   {
+  width: 8rem;
 }
 @keyframes lds-ring {
   0% {
