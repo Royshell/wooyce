@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { ReactMic } from '@cleandersonlobo/react-mic';
 import { login, sendFile, getGraphData } from '../../services/WooyceAPI';
 import CanvasJSReact from '../pages/assets/canvasjs.react';
+import jsPDF from 'jspdf';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -11,7 +12,7 @@ class HomePage extends Component {
   state = {
     record: false,
     graphData: [],
-    options: {},
+    options: undefined,
     isLoading: false,
     radioChecked: false,
     isOpenQuestionsCatalogue: false,
@@ -55,8 +56,7 @@ class HomePage extends Component {
           graphInfo.splice(index, 1);
         }
       });
-      console.log(graphInfo);
-      console.log(EValue);
+
       graphInfo.forEach(( graphData, index ) => { 
         
         index % 2 === 0 ? sortedGraph.push({...graphData}) : sortedGraph.unshift({...graphData});
@@ -89,15 +89,18 @@ class HomePage extends Component {
     const data = [];
     const dataObject = {
       type: "column", 
+      
       indexLabelFontColor: "#5A5757",
       indexLabelPlacement: "outside",
+      
       dataPoints
     };
     data.push(dataObject);
     const options = {
       animationEnabled: true,
       exportEnabled: true,
-      theme: "light2",
+      theme: "light1",
+      height: 270,
       title:{
         text: "Voice Analysis"
       },
@@ -105,6 +108,14 @@ class HomePage extends Component {
     };
 
     return options;
+  };
+  exportToPdf = () => {
+    const canvas = document.querySelector('.canvasjs-chart-canvas');
+    let imgData = canvas.toDataURL("image/jpeg", 1.0);
+    let pdf = new jsPDF('landscape', 'cm', 'a4');
+  
+    pdf.addImage(imgData, 'JPEG', 0, 0);
+    pdf.save("download.pdf");
   };
   render() {
     return (
@@ -139,6 +150,7 @@ class HomePage extends Component {
       </div> }
 
       { this.state.isLoading && <div className="lds-ring"><div></div></div> }
+      { this.state.options && <button className="btn" onClick={ this.exportToPdf }>Export to PDF </button> }
       { this.state.options && <CanvasJSChart options={this.state.options} /> }
           
       </div>
