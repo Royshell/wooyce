@@ -5,7 +5,7 @@ const login = async() => {
   const body = {
     "email": "yeye@mm.ll",
     "password": "testtest"
-  }
+  };
   try {
     console.log('trying...');
     const response = await fetch('http://localhost:3000/users/login', {
@@ -57,7 +57,28 @@ const getGraphData = async() => {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`
-        }
+      }
+    });
+    const data = await response.json();
+    console.log('fetched data');
+    console.log(data);
+    return data;
+  } catch(err) {
+    console.log(err);
+  }
+};
+const setSession = async(startTime, endTime) => {
+  const body = {
+    "begin": startTime,
+    "end": endTime
+  };
+  try {
+    const response = await fetch('http://localhost:3000/sessions', {
+      method: 'POST',
+      headers: {
+        'Au,thorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(body) 
     });
     const data = await response.json();
     console.log('fetched data');
@@ -70,4 +91,4 @@ const getGraphData = async() => {
 
 
 
-export  { login, signUp, fake, sendFile, upload, getGraphData };
+export  { login, signUp, fake, sendFile, upload, getGraphData, setSession };

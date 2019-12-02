@@ -1,7 +1,7 @@
 {
-  "name": "elefend-client",
+  "name": "wooyce-client",
   "version": "1.0.0",
-  "description": "Elefend front-end app",
+  "description": "Wooyce front-end app",
   "main": "index.js",
   "repository": "git@github.com:Royshell/financial-checkup.git",
   "author": "<roy.shell5@gmail.com>",

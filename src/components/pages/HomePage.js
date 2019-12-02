@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useLayoutEffect, useState  } from 'react';
 import { withRouter } from 'react-router';
 import { ReactMic } from '@cleandersonlobo/react-mic';
-import { login, sendFile, getGraphData } from '../../services/WooyceAPI';
+import { login, sendFile, getGraphData, setSession } from '../../services/WooyceAPI';
 import CanvasJSReact from '../pages/assets/canvasjs.react';
 import jsPDF from 'jspdf';
 
+let chartOne;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class HomePage extends Component {
@@ -13,6 +14,7 @@ class HomePage extends Component {
     record: false,
     graphData: [],
     options: undefined,
+    chart: '',
     isLoading: false,
     radioChecked: false,
     isOpenQuestionsCatalogue: false,
@@ -73,6 +75,17 @@ class HomePage extends Component {
   componentDidMount = () => {
     login();
   };
+  componentWillMount = () => {
+    window.addEventListener('resize', this.handleResize);
+  };
+  componentDidUpdate = () => {
+    if (chartOne) {
+      chartOne.set("dataPointWidth",Math.ceil(chartOne.axisX[0].bounds.width/chartOne.data[0].dataPoints.length),true);
+    }
+  }
+  handleResize = () => {
+    chartOne.set("dataPointWidth",Math.ceil(chartOne.axisX[0].bounds.width/chartOne.data[0].dataPoints.length),true);
+  };
   handleRadioBoxClick = (e) => {
     if(this.state.radioChecked) {
       e.target.checked = !e.target.checked;
@@ -89,18 +102,18 @@ class HomePage extends Component {
     const data = [];
     const dataObject = {
       type: "column", 
-      
-      indexLabelFontColor: "#5A5757",
-      indexLabelPlacement: "outside",
-      
+      indexLabel: "{y}%",
+      toolTipContent: "{y}%",
       dataPoints
     };
     data.push(dataObject);
     const options = {
       animationEnabled: true,
       exportEnabled: true,
-      theme: "light1",
       height: 270,
+      axisY:{
+        valueFormatString:"0'%'"
+      },
       title:{
         text: "Voice Analysis"
       },
@@ -151,7 +164,7 @@ class HomePage extends Component {
 
       { this.state.isLoading && <div className="lds-ring"><div></div></div> }
       { this.state.options && <button className="btn" onClick={ this.exportToPdf }>Export to PDF </button> }
-      { this.state.options && <CanvasJSChart options={this.state.options} /> }
+      { this.state.options && <CanvasJSChart options={this.state.options} onRef={ref => chartOne = ref } /> }
           
       </div>
     );
