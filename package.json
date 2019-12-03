@@ -24,6 +24,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.6.0",
     "@cleandersonlobo/react-mic": "^1.1.1",
+    "@material/textfield": "^4.0.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",

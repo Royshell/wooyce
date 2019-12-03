@@ -18,6 +18,7 @@ class HomePage extends Component {
     isLoading: false,
     radioChecked: false,
     isOpenQuestionsCatalogue: false,
+    userData: {},
   };
   startRecording = () => {
     this.setState({
@@ -130,6 +131,21 @@ class HomePage extends Component {
     pdf.addImage(imgData, 'JPEG', 0, 0);
     pdf.save("download.pdf");
   };
+  onUserFirstNameChange = (e) =>{
+    const firstName = { firstName: e.target.value };
+    this.setState({ userData: {...this.state.userData, ...firstName}})
+  };
+  onUserLastNameChange = (e) =>{
+    const lastName = { lastName: e.target.value };
+    this.setState({ userData: {...this.state.userData, ...lastName }});
+  };
+  onUserEMailChange = (e) =>{
+    const email = { email: e.target.value };
+    this.setState({ userData: {...this.state.userData, ...email }});
+  };
+  handleSubmit = () => {
+    //this.state.userData - the user data object
+  };
   render() {
     return (
       <div className="widget">
@@ -148,7 +164,19 @@ class HomePage extends Component {
       <button className="waves-effect waves-light btn" onClick={this.handleCatalogueToggle}>
         { this.state.isOpenQuestionsCatalogue ? 'Close Questions Catalogue' : 'Open Questions Catalogue'} 
       </button>
-      { this.state.isOpenQuestionsCatalogue &&<div className="question-catalogue">  
+      <form>
+        <div>
+          <input type="text" onChange={ this.onUserFirstNameChange } placeholder="First Name"/>
+       </div>
+        <div>
+          <input type="text" onChange={ this.onUserLastNameChange } placeholder="Last Name"/>
+        </div>
+        <div>
+          <input type="email" onChange={ this.onUserEMailChange } placeholder="E-Mail"/>
+        </div>
+        <button onClick={ this.handleSubmit }>submit</button>
+      </form>
+      { this.state.isOpenQuestionsCatalogue && <div className="question-catalogue">  
         <table className="tftable" border="1">
           <tr><th></th><th></th><th>G</th><th>Gis</th><th>A</th><th>B</th><th>H</th><th>C</th><th>Cis</th><th>D</th><th>Dis</th><th>E</th><th>F</th><th>Fis</th></tr>
           <tr><td><strong>Aufwärmrunde:</strong></td> <td> Damit ich mein Gerät einstellen kann, erzählen Sie bitte irgendetwas, z.B. was Sie heute gemacht haben?</td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td className="radio-wrapper"><input type="radio" onClick={ this.handleRadioBoxClick }/></td><td><button onClick={this.startRecording} className="mini-mic"></button><button onClick={this.stopRecording} className="mini-stop"></button></td></tr>
@@ -162,7 +190,7 @@ class HomePage extends Component {
         </table>
       </div> }
       
-      <div className="table-wrapper">
+      { this.state.isOpenQuestionsCatalogue && <div className="table-wrapper">
         <table className="tftable" border="1">
           <tr><th></th><th></th><th></th><th>G</th><th>Gis</th><th>A</th><th>B</th><th>H</th><th>C</th><th>Cis</th><th>D</th><th>Dis</th><th>E</th><th>F</th><th>Fis</th></tr>
           <tr><td><strong>Aufwärmrunde:</strong></td><td></td><td className="radio-wrapper">#</td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td><button onClick={this.startRecording} className="mini-mic"></button><button onClick={this.stopRecording} className="mini-stop"></button></td></tr>
@@ -182,7 +210,7 @@ class HomePage extends Component {
           <tr><td><strong>Stirnmitte:</strong></td><td></td><td className="radio-wrapper">#</td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td><button onClick={this.startRecording} className="mini-mic"></button><button onClick={this.stopRecording} className="mini-stop"></button></td></tr>
           <tr><td></td><td>Richten Sie ihr Bewusstsein zum Herz, halten Sie die positive Grundstimmung und erzählen Sie weiter.</td><td className="radio-wrapper">%</td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td className="radio-wrapper"></td><td></td></tr>
         </table>
-      </div>
+      </div> }
       { this.state.isLoading && <div className="lds-ring"><div></div></div> }
       { this.state.options && <button className="btn" onClick={ this.exportToPdf }>Export to PDF </button> }
       { this.state.options && <CanvasJSChart options={this.state.options} onRef={ref => chartOne = ref } /> }
