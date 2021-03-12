@@ -33,7 +33,7 @@
     "cleave.js": "^1.4.7",
     "css-loader": "^2.0.0",
     "dev-server": "^0.0.2",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "live-server": "^1.2.1",
