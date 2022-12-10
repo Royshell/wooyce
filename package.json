@@ -32,7 +32,7 @@
     "canvasjs": "^1.8.1",
     "cleave.js": "^1.4.7",
     "css-loader": "^2.0.0",
-    "dev-server": "^0.0.2",
+    "dev-server": "^0.2.0",
     "jspdf": "^1.5.3",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
